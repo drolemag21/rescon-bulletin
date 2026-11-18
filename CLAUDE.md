@@ -152,3 +152,4 @@ Keep the version and checksum in sync with `.github/workflows/pages.yml`.
 ## Pending decisions
 
 - **Weekly source report:** a scheduled task for Mondays at 15:00 UTC, to be created after the first run.
+- **Runner context growth:** every scheduled run adds to the runner session's conversation, so each later run costs more. Options to work on: the maintainer typing `/clear` in the runner periodically (not yet confirmed in cloud sessions); testing whether a scheduled prompt starting with `/clear` works; a `New runner` command that rotates to a fresh runner session (new session, recreate the task pointed at it, update the ID here, archive the old one); and keeping tool output small during runs (extract only the needed text from fetched pages).
