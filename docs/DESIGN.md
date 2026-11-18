@@ -171,6 +171,8 @@ The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the sess
   - a new joint advisory from US and/or allied agencies
   - disclosure of a major nation-state campaign or a pre-positioning campaign
   - an actively exploited vulnerability in widely deployed infrastructure or OT technology, with an official advisory
+
+  An attack or disruption gets a post only once it's **Confirmed** (§4.1, §5.2). If only press coverage is available, RESCON tries to read the victim's or agency's own statement; if it can't, the entry is published as Reported and the incident post waits for confirmation.
 - **Forum tags:** Energy, Water, Telecom, Healthcare, Finance, Gov, Confirmed, Reported, Unverified, Claimed, Staff Submitted.
 - **Timestamps** use Discord's `<t:unix:…>` format, so each viewer sees their own local time.
 

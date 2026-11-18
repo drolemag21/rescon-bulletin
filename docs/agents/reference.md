@@ -18,7 +18,11 @@ Label by what you actually read: an official statement you only read through pre
 - Disclosure of a major nation-state campaign or a pre-positioning campaign.
 - An actively exploited vulnerability in widely deployed infrastructure or OT technology, with an official advisory.
 
-Set `significant: true` on those entries. Don't post incidents for routine items. Flooding the forum makes members stop reading. If you're unsure whether an item qualifies, decide, and add an inbox item explaining the call.
+An entry is only significant if its own label supports the criterion: an attack or disruption needs `confirmed`.
+
+**Possibly significant but only press coverage?** Read the victim's or agency's own statement (the source access order in `run.md`). If you can't reach it (e.g. the host isn't allowlisted), publish the entry as `reported` with `significant: false`, and add an inbox item naming the host so the maintainer can allow it. A later run that confirms the item sets `significant: true` and posts the incident then.
+
+Set `significant: true` on qualifying entries. Don't post incidents for routine items. Flooding the forum makes members stop reading. If you're unsure whether an item qualifies, decide, and add an inbox item explaining the call.
 
 ## Entry format
 
