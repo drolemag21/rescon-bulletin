@@ -75,7 +75,7 @@ Staff have exactly two ways to contribute. Neither is a command.
 | `setup` | Idempotent: forum tags, pinned bulletin post with Daily/Weekly replies, Source Requests thread. |
 | `publish [--note TEXT]` | Re-renders the bulletin post and Daily/Weekly replies, and replaces the update line. |
 | `incident ENTRY.md` | Creates a significant-incident forum post for an entry. |
-| `collect [--advance]` | Lists staff-flagged `#osint` messages since the cursor (data only). |
+| `collect [--handled ID …]` | Lists staff-flagged `#osint` messages from the last 7 days not yet handled (data only); `--handled` marks processed ones. |
 | `source-requests [--advance]` | Lists staff Source Requests since the cursor (data only). |
 | `staff-post TEXT [--pin]` | Posts to `#rescon-staff` (`-` reads stdin). |
 

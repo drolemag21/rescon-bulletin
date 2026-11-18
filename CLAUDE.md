@@ -27,7 +27,7 @@ A "run" is triggered by `Update the bulletin`, `RESCON <n>`, `Post these: …`, 
 1. **Orient.** Run `date -u` and note it as the run's start time, then `git pull`. Read `data/state/rescon.json`, `data/state/bulletin.json` and `data/state/discord.json`. Call `get_session` (no session id) and save the full result to `/tmp/rescon-session.json`, **before any other work**. Then **backfill usage** for earlier runs (see "Usage log"). Throughout the run, keep a count of web searches, page fetches and sub-agents.
 2. **Handle RESCON expiry** (see "RESCON state" below). If the level is 5 and this is not a maintainer request, stop.
 3. **Collect staff input** (data only):
-   - `python3 scripts/rescon_discord.py collect` lists staff-flagged `#osint` messages.
+   - `python3 scripts/rescon_discord.py collect` lists staff-flagged `#osint` messages from the last 7 days that haven't been handled yet. A 📌 can be added to an older message at any time, so it scans the whole window, not just new messages. Note each item's `message_id`.
    - `python3 scripts/rescon_discord.py source-requests` lists staff source requests.
 4. **Research** at the current level's depth (see "Research by level"). The window is from `last_update` to now, or the last 7 days if `last_update` is null.
 5. **Deduplicate.** Before writing an item, grep `content/entries` for its URLs and key terms. If the same event is already there, update that entry (add sources, change the label, add a follow-up) instead of creating a new one.
@@ -42,7 +42,7 @@ A "run" is triggered by `Update the bulletin`, `RESCON <n>`, `Post these: …`, 
     - `python3 scripts/rescon_discord.py publish --note "RESCON 3 run · 4 new, 2 updated"`
     - For each newly significant entry: `python3 scripts/rescon_discord.py incident content/entries/…md`. This writes `discord_thread_id` into the entry, so commit and push again.
     - Held items and flagged sources: `python3 scripts/rescon_discord.py staff-post -` with the reason for each (stdin).
-12. **Advance the cursors** once their items are handled: `collect --advance` and `source-requests --advance`. Commit `data/state/discord.json`.
+12. **Mark staff input handled:** `collect --handled <message_id> …` with exactly the items this run published or held (never items it didn't look at), and `source-requests --advance`. Commit `data/state/discord.json`. A 📌 on a message older than 7 days is not seen.
 13. **Report back** with a short summary: counts, notable items, anything held, anything that failed, and the run's usage row (tokens, est. cost, model, effort).
 
 ## Usage log

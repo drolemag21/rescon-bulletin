@@ -171,7 +171,7 @@ The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the sess
 - **Timestamps** use Discord's `<t:unix:…>` format, so each viewer sees their own local time.
 
 ### 7.3 Staff submissions
-- On each run, RESCON reads the OSINT channel for messages posted since the last cursor that carry a 📌 reaction from a member with the **RESCON Staff** role. Reactions from anyone else are ignored, even on a staff member's own message.
+- On each run, RESCON reads the OSINT channel's messages from the last 7 days that carry a 📌 reaction from a member with the **RESCON Staff** role and haven't been handled yet. A reaction can be added to an older message at any time, so the whole window is scanned rather than only messages posted since the last run. Reactions from anyone else are ignored, even on a staff member's own message.
 - Each submitted item is checked and labeled like any other item, then published with the `Staff Submitted` badge and tag.
 - Items that can't be published yet (tier 4b only, no corroboration, out of scope) are **held**. They're listed in `#rescon-staff` with the reason. Held items are never committed to the repo.
 - **Fallback:** the maintainer can paste items to RESCON directly.
@@ -190,7 +190,7 @@ The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the sess
 6. **Regenerate** the Daily and Weekly syntheses.
 7. **Commit and push** → the GitHub Action rebuilds the site.
 8. **Discord:** edit the pinned post and the Daily/Weekly replies, replace the update line, create posts for significant incidents, and post held items to `#rescon-staff`.
-9. **Save state:** message IDs, the OSINT cursor, and the level stack.
+9. **Save state:** message IDs, the handled OSINT submissions, and the level stack.
 
 ### Scheduling
 Timed windows use scheduled tasks. Each firing starts a fresh session that reads state from the repo. When the window expires, the scheduled task is removed. The expiry check in step 1 is a backstop in case a firing is missed.
