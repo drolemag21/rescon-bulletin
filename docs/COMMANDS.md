@@ -14,7 +14,7 @@ RESCON (Research Condition) shows research **intensity**. It is **not a threat l
 
 ## Maintainer commands
 
-Given to RESCON in a Claude Code session, in plain words. Exact wording isn't required.
+Given to RESCON in a Claude Code session, in plain words. Exact wording isn't required. Content changes (labels, corrections, incident posts) are published straight away; changes to the system (sources policy, instructions, scripts) are made on a branch and merged by pull request when you say (`DESIGN.md` §11).
 
 ### Research level
 | Command | Effect |

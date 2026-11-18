@@ -1,0 +1,32 @@
+name: Build check
+
+# Runs on pull requests so system changes are checked before they reach main.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  # Keep in sync with pages.yml.
+  HUGO_VERSION: "0.169.0"
+  HUGO_SHA256: "2d2f0bfe357d8cb4cec02f6bb28a3bff34978c8dda44b618029c5eb9d66765a7"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install Hugo (checksum-verified)
+        run: |
+          f="hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
+          curl -sSfLO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${f}"
+          echo "${HUGO_SHA256}  ${f}" | sha256sum -c -
+          tar -xzf "${f}" hugo && sudo mv hugo /usr/local/bin/hugo
+      - name: Build (fail on warnings)
+        run: |
+          hugo --minify 2>&1 | tee build.log
+          if grep -qiE '^(WARN|ERROR)' build.log; then echo "Build produced warnings or errors"; exit 1; fi
+      - name: Check Python scripts compile
+        run: python3 -m py_compile scripts/*.py
