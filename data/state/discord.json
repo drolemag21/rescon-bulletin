@@ -2,7 +2,7 @@
   "bulletin_thread_id": "1572476037567094805",
   "daily_message_id": "1572476039857442961",
   "weekly_message_id": "1572476041082052650",
-  "update_line_message_id": "1572597320971718761",
+  "update_line_message_id": "1572620774873899101",
   "source_requests_message_id": "1572476043510546503",
   "source_requests_thread_id": "1572476043510546503",
   "source_requests_cursor": "1572476045615960105",
@@ -19,5 +19,7 @@
     "label:claimed": "1572476036946464810",
     "staff": "1572476036946464811"
   },
-  "osint_handled": []
+  "osint_handled": [
+    "1572361887692361790"
+  ]
 }
