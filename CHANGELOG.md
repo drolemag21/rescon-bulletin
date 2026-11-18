@@ -4,12 +4,14 @@ System changes only: instructions, specs, scripts, templates, workflows and poli
 
 ## Unreleased
 
-- Role-based instructions: short root `CLAUDE.md` with a role table; `docs/agents/` for dispatcher, run, source report, maintainer and shared reference (decision 0008).
+_Nothing yet._
+
+## 2026-11-18
+
+- Role-based instructions (#1): short root `CLAUDE.md` with a role table; `docs/agents/` for dispatcher, run, source report, maintainer and shared reference (decision 0008).
 - Change control: content straight to `main`, system files by pull request; `run:`/`content:` commit prefixes; build check on pull requests (decision 0009).
 - Decision records (`docs/decisions/`, backfilled for 2026-11-18) and this changelog.
 - `DESIGN.md` updated for the dispatcher, inbox, source access, usage backfill and change control.
-
-## 2026-11-18
 
 - Dispatcher session starts a fresh session per scheduled job; replaces the persistent runner and `New runner` with `New dispatcher` (`5b5a5c0`, `b7b91d0`; decision 0003, superseding 0002 from `1c723a7`).
 - Maintainer inbox (`docs/INBOX.md`) and `Inbox` command (`7c76b08`; decision 0005).
