@@ -1,5 +1,5 @@
 ---
-title: "Romania's intelligence service says it stopped a Russian Turla attack on a government institution's email with NATO and EU"
+title: "Romania's intelligence service says it stopped a Russian Turla attack on a government institution's email"
 date: 2026-11-18T05:28:00Z
 lastmod: 2026-11-18T22:09:00Z
 label: confirmed
