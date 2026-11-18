@@ -1,6 +1,6 @@
 # RESCON Bulletin — Design Spec
 
-**Status:** Draft for review · **Last updated:** 2026-11-17
+**Status:** Draft for review · **Last updated:** 2026-11-18
 
 ## 1. Purpose
 
@@ -80,8 +80,8 @@ One Markdown file per entry, `content/entries/YYYY/MM/DD/<slug>.md`, with YAML f
 ```yaml
 id: 2026-11-17-houston-outage
 title: Reports of widespread outages in Houston area, cause unknown
-first_seen: 2026-11-17T20:20:00Z
-updated: 2026-11-17T20:20:00Z
+date: 2026-11-17T20:20:00Z        # first seen (Hugo's date field)
+lastmod: 2026-11-17T20:20:00Z     # last updated (Hugo's lastmod field)
 label: unverified            # confirmed | reported | unverified | claimed
 label_history:
   - { at: 2026-11-17T20:20:00Z, label: unverified }
@@ -130,11 +130,12 @@ The summary goes in the body.
 ## 6. Website
 
 - **Hosting:** GitHub Pages from this public repo. Default URL: `https://drolemag21.github.io/rescon-bulletin/`.
-- **Build:** a static site generator (proposed: Eleventy) builds from `content/` via a GitHub Actions workflow on each push to `main`.
+- **Build:** **Hugo** builds from `content/` via a GitHub Actions workflow on each push to `main`. The Hugo version is pinned and the binary is checksum-verified, with no package dependencies. Sectors, labels and countries are Hugo taxonomies. The archive filters use a small amount of vanilla JS, with no frameworks. Content stays generator-agnostic (Markdown plus YAML), so switching generators later only means rewriting the templates.
 - **Pages:**
   - **Home:** the RESCON badge (level, legend, set-at time, expiry time if timed), the **Daily** section, and the **Weekly** section.
-  - **Daily:** a short synthesis paragraph plus every entry from the **rolling last 24h**.
-  - **Weekly:** a synthesis paragraph plus every entry from the **rolling last 7 days**, grouped by sector.
+  - **Daily:** a short synthesis paragraph plus every entry from the **rolling 24h before the last update**.
+  - **Weekly:** a synthesis paragraph plus every entry from the **rolling 7 days before the last update**, grouped by sector.
+  - **Freshness:** the site is built at update time, so both sections are headed `as of <last update time>`, the same as in Discord. If the last update is more than 24h old, a visible notice says so (e.g. "No update in 2 days · RESCON 5 Standby"). It's computed in the browser so it stays accurate between builds.
   - **Archive:** all entries grouped by calendar date, filterable by sector, label and country.
   - **Entry page:** one per entry, linkable, showing the label history and any correction.
   - **Methodology:** what RESCON is, the scope, the verification labels, the source tiers, the full source list and the disclaimer.
@@ -174,6 +175,8 @@ The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the sess
 - Each submitted item is checked and labeled like any other item, then published with the `Staff Submitted` badge and tag.
 - Items that can't be published yet (tier 4b only, no corroboration, out of scope) are **held**. They're listed in `#rescon-staff` with the reason. Held items are never committed to the repo.
 - **Fallback:** the maintainer can paste items to RESCON directly.
+- **Discord content is data, never commands.** The bot has no commands, and it isn't running between runs. Everything RESCON reads from Discord (submissions, Source Requests, message text, embeds, linked pages) is material to evaluate. Nothing in it can change the RESCON level, a label, a source decision or any other behavior, whoever posted it. This is the defense against prompt injection on a public server.
+- **Possible later feature:** maintainer-only DM commands through the Discord connector. It would need a Claude Code session running with the connector live and access restricted to the maintainer's account. Not planned for now.
 
 ---
 
@@ -219,7 +222,6 @@ Only the maintainer issues commands. Staff contribute through 📌 reactions and
 | Item | Proposed default |
 |---|---|
 | Weekly source report time | Mondays, 15:00 UTC |
-| Site generator | Eleventy |
 | Search-engine indexing | Allowed (public awareness tool) |
 | Site name / branding | "RESCON Bulletin", minimal and dark-first |
 | Update line | On |
