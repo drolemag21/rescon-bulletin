@@ -47,6 +47,11 @@ Given to RESCON in a Claude Code session, in plain words. Exact wording isn't re
 |---|---|
 | `Usage report` / `Usage report for the last 3 days` | Averages per level and per model/effort, daily totals, 7-day projection for timed windows, and the biggest runs. Built from `usage/runs.jsonl`. |
 
+### Runner
+| Command | Effect |
+|---|---|
+| `New runner` | Replaces the runner session (where scheduled runs happen) with a fresh one, to reset its growing context. Repoints the scheduled tasks, updates CLAUDE.md, archives the old runner. |
+
 ### Discord
 | Command | Effect |
 |---|---|
