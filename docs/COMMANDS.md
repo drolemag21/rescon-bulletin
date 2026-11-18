@@ -47,6 +47,11 @@ Given to RESCON in a Claude Code session, in plain words. Exact wording isn't re
 |---|---|
 | `Usage report` / `Usage report for the last 3 days` | Averages per level and per model/effort, daily totals, 7-day projection for timed windows, and the biggest runs. Built from `usage/runs.jsonl`. |
 
+### Inbox
+| Command | Effect |
+|---|---|
+| `Inbox` | Shows open items in `docs/INBOX.md` (things runs flagged for the maintainer) with a recommendation for each, and resolves them as you decide. |
+
 ### Runner
 | Command | Effect |
 |---|---|

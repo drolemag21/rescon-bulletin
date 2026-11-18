@@ -1,0 +1,17 @@
+# Maintainer inbox
+
+Items that need a maintainer decision or action, added by RESCON runs and work sessions. Routine run detail stays in the run's session; only actionable items come here.
+
+**This file is public.** Never put held items, staff names or handles, staff deliberations or anything from `#rescon-staff` here. Those stay in Discord.
+
+Format: `- [ ] YYYY-MM-DD · origin · item` where origin is `run <session id>` or `work session`. When resolved, change to `- [x]`, append `→ <date>: <resolution>`, and move it to Resolved. Never delete items.
+
+## Open
+
+- [ ] 2026-11-18 · work session · **Romania/Turla label.** `content/entries/2026/11/18/romania-sri-turla-government-email-intrusion.md` is `confirmed`, but RESCON only read Romania's SRI statement via The Record. Under the source rules that is `reported`. Relabel with a `label_history` entry?
+- [ ] 2026-11-18 · run session_018GeJfTjFhjvxL3pXMVcUdw · **Equinor significance vs label.** The Equinor entry is `reported` (Equinor's statement read via The Record; equinor.com is not allowlisted) but `significant: true`, while the criterion says "a confirmed attack". Either allow equinor.com and confirm it, or tighten/clarify the rule on whether a victim statement read via coverage counts.
+- [ ] 2026-11-18 · work session · **"Widely deployed" is ambiguous.** Cisco BroadWorks (exploited, CISA KEV, carrier platform) and Perforce Puppet (exploited, KEV) were both left non-significant as judgement calls. Define the threshold, e.g. "on CISA KEV and used across a whole sector".
+- [ ] 2026-11-18 · work session · **Unreachable sources.** The environment service refused to allowlist Reuters and/or AP. CERT-FR (ANSSI advisories) and ACSC time out from sessions even when allowed. equinor.com and cnn.com are not allowlisted (only needed when an item comes from them).
+- [ ] 2026-11-18 · work session · **Switch scheduled runs to the dispatcher model** (runner starts a fresh session per run). Tested successfully with session_018GeJfTjFhjvxL3pXMVcUdw. Awaiting go-ahead.
+
+## Resolved
