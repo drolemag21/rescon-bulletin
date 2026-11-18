@@ -7,6 +7,7 @@ eu:   { name: European Union, flag: "🇪🇺" }
 de:   { name: Germany,        flag: "🇩🇪" }
 fr:   { name: France,         flag: "🇫🇷" }
 nl:   { name: Netherlands,    flag: "🇳🇱" }
+"no": { name: Norway,         flag: "🇳🇴" }
 pl:   { name: Poland,         flag: "🇵🇱" }
 ro:   { name: Romania,        flag: "🇷🇴" }
 ua:   { name: Ukraine,        flag: "🇺🇦" }
