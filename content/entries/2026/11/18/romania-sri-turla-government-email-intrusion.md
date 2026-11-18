@@ -1,10 +1,11 @@
 ---
 title: "Romania's intelligence service says it stopped Russian Turla intrusion targeting government email with NATO and EU"
 date: 2026-11-18T05:28:00Z
-lastmod: 2026-11-18T05:28:00Z
-label: confirmed
+lastmod: 2026-11-18T22:07:00Z
+label: reported
 label_history:
   - { at: 2026-11-18T05:28:00Z, label: confirmed }
+  - { at: 2026-11-18T22:07:00Z, label: reported }
 sectors: [gov]
 countries: [ro, nato, eu]
 sources:
