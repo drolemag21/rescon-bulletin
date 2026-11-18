@@ -1,5 +1,5 @@
 {{ define "main" }}
-<p class="crumb"><a href="{{ "/entries/" | relURL }}">← Archive</a></p>
+<p class="crumb"><a href="{{ "entries/" | relURL }}">← Archive</a></p>
 {{ partial "entry-card.html" . }}
 {{- with .Params.label_history }}{{ if gt (len .) 1 }}
 <section class="panel history">

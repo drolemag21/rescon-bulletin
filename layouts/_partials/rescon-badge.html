@@ -10,6 +10,6 @@
     <p class="rescon-name">{{ $def.name }}</p>
     <p class="rescon-does">{{ $def.does }}</p>
     <p class="rescon-times">Set {{ partial "time.html" $s.set_at }}{{ with $s.expires_at }} · until {{ partial "time.html" . }}{{ end }}</p>
-    <p class="rescon-note">Research <em>intensity</em>, not a threat level. <a href="{{ "/methodology/#rescon" | relURL }}">What the levels mean</a></p>
+    <p class="rescon-note">Research <em>intensity</em>, not a threat level. <a href="{{ "methodology/#rescon" | relURL }}">What the levels mean</a></p>
   </div>
 </section>

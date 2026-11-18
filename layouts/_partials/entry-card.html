@@ -6,8 +6,8 @@
   data-label="{{ $label }}" data-sectors="{{ delimit $sectors " " }}" data-countries="{{ delimit $countries " " }}">
   <div class="entry-tags">
     <span class="label-badge label-{{ $label }}" title="{{ $l.meaning }}">{{ $l.icon }} {{ upper $l.name }}</span>
-    {{- range $sectors }}<a class="chip" href="{{ printf "/sectors/%s/" . | relURL }}">{{ index hugo.Data.sectors . | default . }}</a>{{ end -}}
-    {{- range $countries }}{{ $c := index hugo.Data.countries . }}<a class="chip chip-country" href="{{ printf "/countries/%s/" . | relURL }}" title="{{ $c.name | default . }}">{{ $c.flag | default (upper .) }}</a>{{ end -}}
+    {{- range $sectors }}<a class="chip" href="{{ printf "sectors/%s/" . | relURL }}">{{ index hugo.Data.sectors . | default . }}</a>{{ end -}}
+    {{- range $countries }}{{ $c := index hugo.Data.countries . }}<a class="chip chip-country" href="{{ printf "countries/%s/" . | relURL }}" title="{{ $c.name | default . }}">{{ $c.flag | default (upper .) }}</a>{{ end -}}
     {{- if eq .Params.submitted_by "staff" }}<span class="chip chip-staff" title="Submitted by RESCON staff. Shows where the item came from, not that it's verified.">Staff Submitted</span>{{ end -}}
     {{- with .Params.correction }}<span class="chip chip-corrected">Corrected</span>{{ end -}}
   </div>

@@ -11,10 +11,10 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="{{ "/" | relURL }}"><span class="brand-mark" aria-hidden="true">📡</span> RESCON Bulletin</a>
+    <a class="brand" href="{{ "" | relURL }}"><span class="brand-mark" aria-hidden="true">📡</span> RESCON Bulletin</a>
     <nav>
-      <a href="{{ "/entries/" | relURL }}">Archive</a>
-      <a href="{{ "/methodology/" | relURL }}">Methodology</a>
+      <a href="{{ "entries/" | relURL }}">Archive</a>
+      <a href="{{ "methodology/" | relURL }}">Methodology</a>
       {{ with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a>{{ end }}
     </nav>
   </header>
