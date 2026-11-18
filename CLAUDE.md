@@ -150,7 +150,7 @@ When updating an entry, bump `lastmod`, append to `label_history` if the label c
 ```
 
 - **Untimed `RESCON n`:** set the level and `set_at`, set `expires_at` to null, clear `stack`, delete any RESCON scheduled tasks, then do one run.
-- **Timed `RESCON n for D [every I]`:** push the current state onto `stack`, set the new level with `expires_at` and `interval` (the default from `data/levels.yml`, minimum 1h). Create or update the scheduled task that **wakes the RESCON runner session** (see "Scheduling") at that interval. Then do the first run now.
+- **Timed `RESCON n for D [every I]`:** push the current state onto `stack`, set the new level with `expires_at` and `interval` (the default from `data/levels.yml`, minimum 1h). Create or update the `RESCON scheduled runs` task (see "Scheduling") at that interval. Then do the first run now.
 - **Expiry (checked at step 2 of every run):** if `expires_at` has passed, pop the `stack` until you reach an entry whose `expires_at` is null or still in the future, and restore it. Delete or replace the scheduled task to match. Announce it with `publish --note "⏱️ RESCON 2 window ended → returning to RESCON 4"`.
 - Use `list_triggers` to find existing RESCON scheduled tasks before creating new ones. Never leave duplicates.
 
