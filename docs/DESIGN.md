@@ -195,12 +195,16 @@ The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the sess
 ### Scheduling
 Timed windows use scheduled tasks. Each firing starts a fresh session that reads state from the repo. When the window expires, the scheduled task is removed. The expiry check in step 1 is a backstop in case a firing is missed.
 
+### Usage log
+Each run appends one line to `usage/runs.jsonl` (public in the repo, not shown on the site; the maintainer may move it later). A line holds the run's token and estimated-cost delta, taken from `get_session` snapshots at the start and end of the run, plus model, effort level, RESCON level, trigger, duration, searches, fetches, sub-agents and results. `Usage report` summarizes it per level and per model/effort, with daily totals and a weekly projection. `cost_usd` is an API-price estimate; plan limits are shown under claude.ai → Settings → Usage.
+
 ### Maintainer commands (natural language in a session)
 - `RESCON <n>` / `RESCON <n> for <duration> [every <interval>]`
 - `Update the bulletin` (one run at the current level)
 - `Post these: <links>` (manual submission)
 - `Add source <url>` / `Remove source <name>`
 - `Source report`
+- `Usage report`
 - `Mark <entry> confirmed | ruled out: <note>`
 
 Only the maintainer issues commands. Staff contribute through 📌 reactions and Source Requests.

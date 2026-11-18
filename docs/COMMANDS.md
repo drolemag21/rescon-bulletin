@@ -42,6 +42,11 @@ Given to RESCON in a Claude Code session, in plain words. Exact wording isn't re
 | `Source report` | Posts the source decisions report in `#rescon-staff`. It's also posted weekly (Mondays 15:00 UTC). |
 | `Approve` / `Reject <held item or source>` | Resolves items waiting on the maintainer. |
 
+### Usage
+| Command | Effect |
+|---|---|
+| `Usage report` / `Usage report for the last 3 days` | Averages per level and per model/effort, daily totals, 7-day projection for timed windows, and the biggest runs. Built from `usage/runs.jsonl`. |
+
 ### Discord
 | Command | Effect |
 |---|---|
@@ -68,3 +73,5 @@ Staff have exactly two ways to contribute. Neither is a command.
 | `collect [--advance]` | Lists staff-flagged `#osint` messages since the cursor (data only). |
 | `source-requests [--advance]` | Lists staff Source Requests since the cursor (data only). |
 | `staff-post TEXT [--pin]` | Posts to `#rescon-staff` (`-` reads stdin). |
+
+`scripts/rescon_usage.py`: `record` (one line per run, the delta between start and end usage snapshots) and `report [--days N]`.

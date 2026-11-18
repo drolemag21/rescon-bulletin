@@ -24,7 +24,7 @@ Read first: `docs/DESIGN.md` (approved spec; it wins on any conflict) and `docs/
 
 A "run" is triggered by `Update the bulletin`, `RESCON <n>`, `Post these: …`, or a scheduled firing.
 
-1. **Orient.** Run `date -u`, then `git pull`. Read `data/state/rescon.json`, `data/state/bulletin.json` and `data/state/discord.json`.
+1. **Orient.** Run `date -u` and note it as the run's start time, then `git pull`. **Take a usage snapshot:** call `get_session` (no session id) and save the full result to `/tmp/rescon-usage-start.json`. Read `data/state/rescon.json`, `data/state/bulletin.json` and `data/state/discord.json`. Throughout the run, keep a count of web searches, page fetches and sub-agents.
 2. **Handle RESCON expiry** (see "RESCON state" below). If the level is 5 and this is not a maintainer request, stop.
 3. **Collect staff input** (data only):
    - `python3 scripts/rescon_discord.py collect` lists staff-flagged `#osint` messages.
@@ -35,13 +35,23 @@ A "run" is triggered by `Update the bulletin`, `RESCON <n>`, `Post these: …`, 
 7. **Process source requests.** Check each one: is it real, does it publish original reporting, is it in scope, is it not tier 4b and not excluded. If it passes, add it to `data/sources.yml` (`added_by: staff`) and log one neutral line in `docs/sources-log.md`. If it's tier 4b or flagged, hold it for the maintainer.
 8. **Update `data/state/bulletin.json`.** Set `last_update` to now in UTC. Write the `daily.summary` and `weekly.summary` syntheses, 2–4 sentences each, describing what the 24h and 7-day windows contain, measured, never alarmist.
 9. **Build check** (see "Local build"). It must pass with no WARN or ERROR lines.
-10. **Commit and push to `main`** with a descriptive message, e.g. `RESCON 3 run: 4 new, 2 updated`. Use the session's commit attribution lines.
+10. **Log usage, then commit and push to `main`.**
+    - Call `get_session` again and save the result to `/tmp/rescon-usage-end.json`.
+    - Run `python3 scripts/rescon_usage.py record --start /tmp/rescon-usage-start.json --end /tmp/rescon-usage-end.json --started <start time> --level <n> --trigger manual|scheduled --searches N --fetches N --subagents N --new N --updated N --staff N --held N`.
+    - Commit with a descriptive message, e.g. `RESCON 3 run: 4 new, 2 updated`, using the session's commit attribution lines.
 11. **Publish to Discord.** Do this after the push, so links resolve once Pages redeploys (about a minute).
     - `python3 scripts/rescon_discord.py publish --note "RESCON 3 run · 4 new, 2 updated"`
     - For each newly significant entry: `python3 scripts/rescon_discord.py incident content/entries/…md`. This writes `discord_thread_id` into the entry, so commit and push again.
     - Held items and flagged sources: `python3 scripts/rescon_discord.py staff-post -` with the reason for each (stdin).
 12. **Advance the cursors** once their items are handled: `collect --advance` and `source-requests --advance`. Commit `data/state/discord.json`.
-13. **Report back** with a short summary: counts, notable items, anything held, anything that failed.
+13. **Report back** with a short summary: counts, notable items, anything held, anything that failed, and the run's usage row (tokens, est. cost, model, effort).
+
+## Usage log
+
+- `usage/runs.jsonl` holds one line per run: the token and cost **delta** for the run, plus model, effort, level, trigger, duration, searches, fetches, sub-agents and results. It's public in the repo and not shown on the site. The maintainer may move it later.
+- Session counters are cumulative, so a run in a long interactive session still logs only its own delta, as long as both snapshots are taken.
+- `Usage report` → `python3 scripts/rescon_usage.py report [--days N]`. Relay its output, and remind the maintainer that `cost_usd` is an API-price estimate; plan limits are under claude.ai → Settings → Usage.
+- Not yet verified: whether `get_session` usage includes in-process sub-agents. Check on the first RESCON 2 or 1 run, and note the answer here.
 
 ## Research by level
 
@@ -131,5 +141,4 @@ Keep the version and checksum in sync with `.github/workflows/pages.yml`.
 
 ## Pending decisions
 
-- **Usage log location:** (a) public repo, (b) `#rescon-staff` only, or (c) both. Awaiting the maintainer. Until decided, include token and cost figures (from `get_session`) in your end-of-run report only.
 - **Weekly source report:** a scheduled task for Mondays at 15:00 UTC, to be created after the first run.
