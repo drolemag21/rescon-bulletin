@@ -1,0 +1,4 @@
+confirmed:  { name: Confirmed,  icon: "🟢", meaning: "Officially verified (government advisory, or a statement from the victim or operator)." }
+reported:   { name: Reported,   icon: "🔵", meaning: "Credible reporting, not officially confirmed." }
+unverified: { name: Unverified, icon: "🟡", meaning: "Single-source or eyewitness, not corroborated." }
+claimed:    { name: Claimed,    icon: "🟠", meaning: "Asserted by a threat actor, reported via credible coverage. Never linked directly." }

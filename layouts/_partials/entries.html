@@ -1,0 +1,2 @@
+{{- /* All published entry pages, newest activity first */ -}}
+{{- return (where site.RegularPages "Section" "entries").ByLastmod.Reverse -}}

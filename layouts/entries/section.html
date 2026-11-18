@@ -1,0 +1,24 @@
+{{ define "main" }}
+<h1>Archive</h1>
+<p class="lede">Every entry, grouped by the date it was first seen. Corrections stay visible; nothing is silently removed.</p>
+<form class="filters" aria-label="Filter entries" hidden>
+  <label>Label
+    <select data-filter="label"><option value="">All</option>{{ range $k, $v := hugo.Data.labels }}<option value="{{ $k }}">{{ $v.name }}</option>{{ end }}</select>
+  </label>
+  <label>Sector
+    <select data-filter="sectors"><option value="">All</option>{{ range $k, $v := hugo.Data.sectors }}<option value="{{ $k }}">{{ $v }}</option>{{ end }}</select>
+  </label>
+  <label>Country
+    <select data-filter="countries"><option value="">All</option>{{ range $k, $v := hugo.Data.countries }}<option value="{{ $k }}">{{ $v.name }}</option>{{ end }}</select>
+  </label>
+  <output class="filter-count" aria-live="polite"></output>
+</form>
+{{- range (where site.RegularPages "Section" "entries").GroupByDate "2006-01-02" }}
+<section class="day-group">
+  <h2 class="day-head"><time datetime="{{ .Key }}" data-date-only>{{ .Key }}</time> <span class="count">{{ len .Pages }}</span></h2>
+  {{- range .Pages }}{{ partial "entry-card.html" . }}{{ end }}
+</section>
+{{- else }}
+<p class="none">No entries yet.</p>
+{{- end }}
+{{ end }}

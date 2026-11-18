@@ -1,0 +1,55 @@
+{{ define "main" }}
+{{- $b := hugo.Data.state.bulletin -}}
+{{ partial "rescon-badge.html" . }}
+
+{{- if not $b.last_update }}
+<section class="panel empty">
+  <h2>Awaiting first update</h2>
+  <p>No bulletin has been published yet. Entries will appear here after the first research run.</p>
+</section>
+{{- else }}
+{{- $asOf := time $b.last_update -}}
+{{- $all := partial "entries.html" . -}}
+<div class="stale-notice" data-last-update="{{ $asOf.UTC.Format "2006-01-02T15:04:05Z" }}" hidden></div>
+
+{{- /* Daily: rolling 24h before the last update */ -}}
+{{- $dayCut := $asOf.Add (time.ParseDuration "-24h") -}}
+{{- $daily := where $all "Lastmod" "ge" $dayCut -}}
+<section class="panel" id="daily">
+  <header class="panel-head">
+    <h2>Daily</h2>
+    <p class="as-of">Last 24h · as of {{ partial "time.html" $asOf }}</p>
+  </header>
+  {{- with $b.daily.summary }}<div class="synthesis">{{ . | markdownify }}</div>{{ end }}
+  {{- range $daily }}{{ partial "entry-card.html" . }}{{ else }}<p class="none">No new or updated items in this window.</p>{{ end }}
+</section>
+
+{{- /* Weekly: rolling 7 days before the last update, grouped by primary sector */ -}}
+{{- $weekCut := $asOf.Add (time.ParseDuration "-168h") -}}
+{{- $weekly := where $all "Lastmod" "ge" $weekCut -}}
+<section class="panel" id="weekly">
+  <header class="panel-head">
+    <h2>Weekly</h2>
+    <p class="as-of">Last 7 days · as of {{ partial "time.html" $asOf }}</p>
+  </header>
+  {{- with $b.weekly.summary }}<div class="synthesis">{{ . | markdownify }}</div>{{ end }}
+  {{- if not $weekly }}<p class="none">No items in this window.</p>{{ end }}
+  {{- $keys := slice -}}
+  {{- range $k, $_ := hugo.Data.sectors }}{{ $keys = $keys | append $k }}{{ end -}}
+  {{- range $key := $keys -}}
+    {{- $group := slice -}}
+    {{- range $weekly -}}
+      {{- $primary := index (.Params.sectors | default (slice "other")) 0 -}}
+      {{- if eq $primary $key }}{{ $group = $group | append . }}{{ end -}}
+    {{- end -}}
+    {{- with $group }}
+    <details class="sector-group" open>
+      <summary>{{ index hugo.Data.sectors $key }} <span class="count">{{ len . }}</span></summary>
+      {{- range . }}{{ partial "entry-card.html" . }}{{ end }}
+    </details>
+    {{- end -}}
+  {{- end }}
+</section>
+{{- end }}
+<p class="more"><a href="{{ "/entries/" | relURL }}">Full archive →</a></p>
+{{ end }}

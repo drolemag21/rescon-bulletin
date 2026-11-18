@@ -1,0 +1,8 @@
+<table class="levels">
+  <thead><tr><th>Level</th><th>Name</th><th>What a run does</th><th>Default interval (timed)</th></tr></thead>
+  <tbody>
+  {{- range (slice "5" "4" "3" "2" "1") }}{{ $d := index hugo.Data.levels . }}
+    <tr class="rescon-{{ . }}"><td><span class="lvl-pill">RESCON {{ . }}</span></td><td>{{ $d.name }}</td><td>{{ $d.does }}</td><td>{{ with $d.interval }}Every {{ . }}{{ else }}No runs{{ end }}</td></tr>
+  {{- end }}
+  </tbody>
+</table>

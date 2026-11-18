@@ -1,0 +1,9 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+<ul class="term-list">
+  {{- $data := cond (eq .Data.Plural "sectors") hugo.Data.sectors hugo.Data.countries -}}
+  {{- range .Data.Terms.Alphabetical }}{{ $d := index $data .Page.Data.Term }}
+  <li><a href="{{ .Page.RelPermalink }}">{{ if eq $.Data.Plural "sectors" }}{{ $d | default .Page.Title }}{{ else }}{{ $d.flag }} {{ $d.name | default .Page.Title }}{{ end }}</a> <span class="count">{{ .Count }}</span></li>
+  {{- end }}
+</ul>
+{{ end }}

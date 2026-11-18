@@ -1,0 +1,14 @@
+{{ define "main" }}
+<p class="crumb"><a href="{{ "/entries/" | relURL }}">← Archive</a></p>
+{{ partial "entry-card.html" . }}
+{{- with .Params.label_history }}{{ if gt (len .) 1 }}
+<section class="panel history">
+  <h2>Label history</h2>
+  <ol>
+    {{- range . }}{{ $l := index hugo.Data.labels .label }}
+    <li>{{ partial "time.html" .at }}: {{ $l.icon }} {{ $l.name }}{{ with .note }}. {{ . }}{{ end }}</li>
+    {{- end }}
+  </ol>
+</section>
+{{ end }}{{ end }}
+{{ end }}

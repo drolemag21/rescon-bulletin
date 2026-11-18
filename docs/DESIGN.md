@@ -96,7 +96,7 @@ correction: null             # { at, note } when ruled out or retracted
 discord_thread_id: null      # set if a significant-incident post exists
 ```
 
-The summary goes in the body.
+The summary goes in the body. Timestamps must never be in the future: Hugo skips future-dated pages, so an entry dated even minutes ahead would silently not appear.
 
 ---
 
@@ -115,10 +115,10 @@ The summary goes in the body.
 ### 5.2 Rules
 - Tier 4b is never linked, embedded or quoted directly. That applies to staff submissions too. If a 4b-only item has no tier 2–3 coverage, it is **held** (§7.3), not posted.
 - **Exclusions:** Kaspersky (excluded for now).
-- The source list lives in `sources.yml` (name, URL, tier, `added_by: rescon | staff | maintainer`, date added). The site's methodology page shows it publicly.
+- The source list lives in `data/sources.yml` (name, URL, tier, `added_by: rescon | staff | maintainer`, date added). The site's methodology page shows it publicly.
 
 ### 5.3 Adding sources
-- **Maintainer:** tells RESCON directly, or edits `sources.yml`.
+- **Maintainer:** tells RESCON directly, or edits `data/sources.yml`.
 - **Staff:** reply in the **Source Requests** post in `#rescon-staff` with a URL and a reason. RESCON processes requests on the next run:
   - Passes the check → added automatically.
   - Tier 4b, or flagged for another reason → held for maintainer approval.
@@ -182,7 +182,7 @@ The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the sess
 
 ## 8. Run pipeline
 
-1. **Load state** (`state/rescon.json`, `state/discord.json`) and handle any expired timed level.
+1. **Load state** (`data/state/rescon.json`, `data/state/discord.json`; site-visible state lives in `data/state/bulletin.json`) and handle any expired timed level.
 2. **Collect staff submissions** (§7.3) and process Source Requests (§5.3).
 3. **Research** at the current depth (§3).
 4. **Deduplicate** against existing entries by URL and by matching the same event across sources.

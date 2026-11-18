@@ -1,0 +1,6 @@
+# RESCON = Research Condition. How hard RESCON is researching. NOT a threat level.
+"5": { name: Standby,   interval: null, does: "No active research. Updates happen only on specific request." }
+"4": { name: Routine,   interval: 12h,  does: "One sweep of core sources: official advisories, major outlets, key vendors." }
+"3": { name: Elevated,  interval: 6h,   does: "Broader sweep: more vendors, allied CERTs, sector-specific sources." }
+"2": { name: Intensive, interval: 3h,   does: "2–3 parallel research agents split by domain, plus cross-checking between sources." }
+"1": { name: Maximum,   interval: 2h,   does: "Full multi-agent orchestration across all domains, deduplication, a confidence rating per item, and a lead synthesis pass." }

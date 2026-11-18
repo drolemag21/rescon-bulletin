@@ -1,0 +1,24 @@
+baseURL = "https://drolemag21.github.io/rescon-bulletin/"
+title = "RESCON Bulletin"
+locale = "en-US"
+enableRobotsTXT = true
+
+[taxonomies]
+  sector = "sectors"
+  country = "countries"
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html"]
+  taxonomy = ["html"]
+  term = ["html"]
+
+[params]
+  description = "Open-source aggregation of public reporting on nation-state cyber activity and threats to critical infrastructure in the US and allied countries."
+  repo = "https://github.com/drolemag21/rescon-bulletin"
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[services.rss]
+  limit = 50

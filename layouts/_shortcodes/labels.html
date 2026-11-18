@@ -1,0 +1,8 @@
+<table class="labels">
+  <thead><tr><th>Label</th><th>Meaning</th></tr></thead>
+  <tbody>
+  {{- range (slice "confirmed" "reported" "unverified" "claimed") }}{{ $l := index hugo.Data.labels . }}
+    <tr><td><span class="label-badge label-{{ . }}">{{ $l.icon }} {{ upper $l.name }}</span></td><td>{{ $l.meaning }}</td></tr>
+  {{- end }}
+  </tbody>
+</table>

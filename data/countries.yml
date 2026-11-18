@@ -1,0 +1,15 @@
+us:   { name: United States,  flag: "🇺🇸" }
+ca:   { name: Canada,         flag: "🇨🇦" }
+gb:   { name: United Kingdom, flag: "🇬🇧" }
+au:   { name: Australia,      flag: "🇦🇺" }
+nz:   { name: New Zealand,    flag: "🇳🇿" }
+eu:   { name: European Union, flag: "🇪🇺" }
+de:   { name: Germany,        flag: "🇩🇪" }
+fr:   { name: France,         flag: "🇫🇷" }
+nl:   { name: Netherlands,    flag: "🇳🇱" }
+pl:   { name: Poland,         flag: "🇵🇱" }
+ua:   { name: Ukraine,        flag: "🇺🇦" }
+jp:   { name: Japan,          flag: "🇯🇵" }
+kr:   { name: South Korea,    flag: "🇰🇷" }
+tw:   { name: Taiwan,         flag: "🇹🇼" }
+nato: { name: NATO,           flag: "🛡️" }

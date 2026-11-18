@@ -1,0 +1,30 @@
+{{- $label := .Params.label | default "reported" -}}
+{{- $l := index hugo.Data.labels $label -}}
+{{- $sectors := .Params.sectors | default slice -}}
+{{- $countries := .Params.countries | default slice -}}
+<article class="entry label-{{ $label }}{{ with .Params.correction }} is-corrected{{ end }}"
+  data-label="{{ $label }}" data-sectors="{{ delimit $sectors " " }}" data-countries="{{ delimit $countries " " }}">
+  <div class="entry-tags">
+    <span class="label-badge label-{{ $label }}" title="{{ $l.meaning }}">{{ $l.icon }} {{ upper $l.name }}</span>
+    {{- range $sectors }}<a class="chip" href="{{ printf "/sectors/%s/" . | relURL }}">{{ index hugo.Data.sectors . | default . }}</a>{{ end -}}
+    {{- range $countries }}{{ $c := index hugo.Data.countries . }}<a class="chip chip-country" href="{{ printf "/countries/%s/" . | relURL }}" title="{{ $c.name | default . }}">{{ $c.flag | default (upper .) }}</a>{{ end -}}
+    {{- if eq .Params.submitted_by "staff" }}<span class="chip chip-staff" title="Submitted by RESCON staff. Shows where the item came from, not that it's verified.">Staff Submitted</span>{{ end -}}
+    {{- with .Params.correction }}<span class="chip chip-corrected">Corrected</span>{{ end -}}
+  </div>
+  <h3 class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{- with .Params.correction }}
+  <p class="correction"><strong>Correction</strong> ({{ partial "time.html" .at }}): {{ .note }}</p>
+  {{- end }}
+  <div class="entry-summary">{{ .Content }}</div>
+  {{- with .Params.sources }}
+  <ul class="entry-sources">
+    {{- range . }}
+    <li><a href="{{ .url }}" rel="noopener noreferrer nofollow" target="_blank">{{ .name }}</a>{{ if .paywalled }} <span title="Paywalled">🔒</span>{{ end }}</li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- with .Params.guidance }}
+  <p class="guidance">🛡️ Guidance: <a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ .name }}</a></p>
+  {{- end }}
+  <p class="entry-times">First seen {{ partial "time.html" .Date }}{{ if ne .Lastmod .Date }} · updated {{ partial "time.html" .Lastmod }}{{ end }}</p>
+</article>

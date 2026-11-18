@@ -1,0 +1,15 @@
+{{- $s := hugo.Data.state.rescon -}}
+{{- $lvl := string $s.level -}}
+{{- $def := index hugo.Data.levels $lvl -}}
+<section class="rescon rescon-{{ $lvl }}" aria-label="Current research condition">
+  <div class="rescon-level">
+    <span class="rescon-label">RESCON</span>
+    <span class="rescon-num">{{ $lvl }}</span>
+  </div>
+  <div class="rescon-body">
+    <p class="rescon-name">{{ $def.name }}</p>
+    <p class="rescon-does">{{ $def.does }}</p>
+    <p class="rescon-times">Set {{ partial "time.html" $s.set_at }}{{ with $s.expires_at }} · until {{ partial "time.html" . }}{{ end }}</p>
+    <p class="rescon-note">Research <em>intensity</em>, not a threat level. <a href="{{ "/methodology/#rescon" | relURL }}">What the levels mean</a></p>
+  </div>
+</section>

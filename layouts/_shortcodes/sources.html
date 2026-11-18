@@ -1,0 +1,16 @@
+{{- $tiers := dict "1" "Tier 1 · Official" "2" "Tier 2 · Vendor threat research" "3" "Tier 3 · Reputable press" "4a" "Tier 4a · Named researchers, journalists, on-the-ground accounts" -}}
+{{- range (slice "1" "2" "3" "4a") }}{{ $t := . }}
+{{- $list := where hugo.Data.sources.sources "tier" $t }}
+<h3>{{ index $tiers $t }}</h3>
+{{- with $list }}
+<ul class="source-list">
+  {{- range sort . "name" }}
+  <li><a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ .name }}</a>{{ if .paywalled }} 🔒{{ end }} <span class="muted">added {{ .added }} by {{ .added_by }}</span></li>
+  {{- end }}
+</ul>
+{{- else }}<p class="muted">None yet. Added individually via Source Requests.</p>{{ end }}
+{{- end }}
+<h3>Exclusions</h3>
+<ul class="source-list">
+  {{- range hugo.Data.sources.exclusions }}<li>{{ .name }} <span class="muted">{{ .reason }}</span></li>{{ end }}
+</ul>

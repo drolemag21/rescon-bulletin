@@ -1,0 +1,47 @@
+# RESCON source list. Public — shown on the Methodology page.
+# tier: 1 official · 2 vendor research · 3 press · 4a named researchers/journalists/on-the-ground
+# Tier 4b (threat-actor channels) is never listed or linked.
+# added_by: rescon | staff | maintainer   (never a personal handle)
+
+sources:
+  # ── Tier 1: Official ──────────────────────────────────────────────
+  - { name: "CISA",                                 url: "https://www.cisa.gov/news-events/cybersecurity-advisories", tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "FBI / IC3",                            url: "https://www.ic3.gov/",                                       tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "NSA Cybersecurity",                    url: "https://www.nsa.gov/Cybersecurity/",                         tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "UK NCSC",                              url: "https://www.ncsc.gov.uk/",                                   tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "Canadian Centre for Cyber Security",   url: "https://www.cyber.gc.ca/en",                                 tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "Australian Cyber Security Centre",     url: "https://www.cyber.gov.au/",                                  tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "NCSC New Zealand",                     url: "https://www.ncsc.govt.nz/",                                  tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "ENISA",                                url: "https://www.enisa.europa.eu/",                               tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "CERT-EU",                              url: "https://cert.europa.eu/",                                    tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "BSI (Germany)",                        url: "https://www.bsi.bund.de/",                                   tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "ANSSI (France)",                       url: "https://cyber.gouv.fr/",                                     tier: "1", added_by: rescon, added: 2026-11-18 }
+  - { name: "JPCERT/CC (Japan)",                    url: "https://www.jpcert.or.jp/english/",                          tier: "1", added_by: rescon, added: 2026-11-18 }
+
+  # ── Tier 2: Vendor threat research ───────────────────────────────
+  - { name: "Google Threat Intelligence (Mandiant)", url: "https://cloud.google.com/blog/topics/threat-intelligence",    tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "Microsoft Threat Intelligence",        url: "https://www.microsoft.com/en-us/security/blog/topic/threat-intelligence/", tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "CrowdStrike",                          url: "https://www.crowdstrike.com/en-us/blog/",                    tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "Palo Alto Networks Unit 42",           url: "https://unit42.paloaltonetworks.com/",                      tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "Cisco Talos",                          url: "https://blog.talosintelligence.com/",                        tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "Recorded Future (Insikt Group)",       url: "https://www.recordedfuture.com/research",                    tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "Dragos",                               url: "https://www.dragos.com/blog/",                               tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "Claroty Team82",                       url: "https://claroty.com/team82",                                 tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "ESET WeLiveSecurity",                  url: "https://www.welivesecurity.com/",                            tier: "2", added_by: rescon, added: 2026-11-18 }
+  - { name: "SentinelLabs",                         url: "https://www.sentinelone.com/labs/",                          tier: "2", added_by: rescon, added: 2026-11-18 }
+
+  # ── Tier 3: Reputable press ──────────────────────────────────────
+  - { name: "The Record",                           url: "https://therecord.media/",                                   tier: "3", added_by: rescon, added: 2026-11-18 }
+  - { name: "CyberScoop",                           url: "https://cyberscoop.com/",                                    tier: "3", added_by: rescon, added: 2026-11-18 }
+  - { name: "BleepingComputer",                     url: "https://www.bleepingcomputer.com/",                          tier: "3", added_by: rescon, added: 2026-11-18 }
+  - { name: "SecurityWeek",                         url: "https://www.securityweek.com/",                              tier: "3", added_by: rescon, added: 2026-11-18 }
+  - { name: "Reuters",                              url: "https://www.reuters.com/technology/cybersecurity/",          tier: "3", added_by: rescon, added: 2026-11-18 }
+  - { name: "Associated Press",                     url: "https://apnews.com/",                                        tier: "3", added_by: rescon, added: 2026-11-18 }
+  - { name: "The Wall Street Journal",              url: "https://www.wsj.com/",                                       tier: "3", paywalled: true, added_by: rescon, added: 2026-11-18 }
+  - { name: "Bloomberg",                            url: "https://www.bloomberg.com/",                                 tier: "3", paywalled: true, added_by: rescon, added: 2026-11-18 }
+
+  # ── Tier 4a: Named researchers, journalists, on-the-ground ───────
+  # Added individually via Source Requests or the maintainer.
+
+exclusions:
+  - { name: "Kaspersky", reason: "Excluded by maintainer decision.", added: 2026-11-18 }

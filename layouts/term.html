@@ -1,0 +1,7 @@
+{{ define "main" }}
+{{- $term := .Data.Term -}}
+{{- $name := cond (eq .Data.Plural "sectors") (index hugo.Data.sectors $term) (index hugo.Data.countries $term).name -}}
+<p class="crumb"><a href="{{ "/entries/" | relURL }}">← Archive</a></p>
+<h1>{{ $name | default .Title }}</h1>
+{{- range .Pages.ByLastmod.Reverse }}{{ partial "entry-card.html" . }}{{ else }}<p class="none">No entries.</p>{{ end }}
+{{ end }}
