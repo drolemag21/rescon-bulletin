@@ -45,7 +45,7 @@
     {{- with $group }}
     <details class="sector-group" open>
       <summary>{{ index hugo.Data.sectors $key }} <span class="count">{{ len . }}</span></summary>
-      {{- range . }}{{ partial "entry-card.html" . }}{{ end }}
+      {{- range . }}{{ partial "entry-row.html" . }}{{ end }}
     </details>
     {{- end -}}
   {{- end }}

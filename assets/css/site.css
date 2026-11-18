@@ -122,6 +122,32 @@ a.chip:hover { color: var(--text); }
 .entry-title a { color: var(--text); text-decoration: none; }
 .entry-title a:hover { text-decoration: underline; }
 .entry-summary p { margin: 0 0 .5em; }
+/* Labeled summary (What / Who / Status), written as a Markdown definition list.
+   Older entries are plain paragraphs and are unaffected. */
+.entry-summary dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 12px; margin: 0 0 8px; }
+.entry-summary dt {
+  font: 700 .72rem/1.9 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+}
+.entry-summary dd { margin: 0; min-width: 0; }
+@media (max-width: 480px) {
+  .entry-summary dl { grid-template-columns: 1fr; gap: 0; }
+  .entry-summary dd { margin-bottom: 8px; }
+}
+
+/* Compact rows (Weekly panel) */
+.entry-row {
+  display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: baseline;
+  padding: 9px 0; border-top: 1px solid var(--border);
+}
+.sector-group > .entry-row:first-of-type { border-top: 0; }
+.row-dot { width: 9px; height: 9px; border-radius: 50%; background: currentColor; display: inline-block; }
+.entry-row.label-confirmed, .entry-row.label-reported, .entry-row.label-unverified, .entry-row.label-claimed { color: inherit; }
+.entry-row.label-confirmed .row-dot { color: var(--l-confirmed); } .entry-row.label-reported .row-dot { color: var(--l-reported); }
+.entry-row.label-unverified .row-dot { color: var(--l-unverified); } .entry-row.label-claimed .row-dot { color: var(--l-claimed); }
+.row-title { color: var(--text); text-decoration: none; min-width: 0; }
+.row-title:hover { text-decoration: underline; }
+.row-meta { grid-column: 2; color: var(--muted); font-size: .8rem; }
+.entry-row.is-corrected .row-title { color: var(--muted); }
 .correction {
   margin: 0 0 8px; padding: 8px 10px; border-left: 3px solid var(--muted);
   background: var(--surface-2); border-radius: 0 6px 6px 0; font-size: .92rem;

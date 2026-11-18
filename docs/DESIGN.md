@@ -68,7 +68,7 @@ When an item is retracted, debunked or ruled out, its entry is **marked**, not d
 
 ### 4.3 Entry format
 - **Headline**
-- **Summary:** at most 3 sentences, in our own words. It must still make sense if the link dies.
+- **Summary:** three labeled lines, **What**, **Who** (attribution, or "Unknown") and **Status**, at most 75 words in total with no sentence over 30 words, in our own words. It must still make sense if the link dies. Entries written before this format keep their single paragraph.
 - **Links:** one or more sources, with paywalled sources marked 🔒.
 - **Metadata:** label, sector(s), country or countries, first-seen time, last-updated time.
 - **Optional:** a "Guidance" line linking to official mitigation guidance, e.g. a CISA advisory. Links only; we don't write guidance of our own.

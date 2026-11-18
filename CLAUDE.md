@@ -26,7 +26,7 @@ This file holds only what every session needs. **Find your role below and read i
 - Use Kaspersky or anything else under `exclusions` in `data/sources.yml`.
 - Commit staff Discord handles or names, held items, staff deliberations or internal notes. The repo is public. Credit is `submitted_by: staff`.
 - Date anything in the future. Hugo silently skips future-dated pages. Run `date -u` and use real UTC times.
-- Copy article text. Summaries are at most 3 sentences, in your own words, and still make sense if the link dies.
+- Copy article text. Summaries follow the format in `docs/agents/reference.md` (at most 75 words), are in your own words, and still make sense if the link dies.
 - Silently delete or rewrite an entry's history. Use corrections and `label_history`.
 - Change a **system file** outside a pull request (see below).
 

@@ -47,8 +47,22 @@ significant: false
 correction: null                   # { at: …, note: "Ruled out — …" }
 discord_thread_id: null            # set by `incident`
 ---
-Summary of at most 3 sentences, in your own words. Say what's known, what isn't, and who reported it.
+What
+: What happened, to whom, when. Who reported or confirmed it.
+
+Who
+: Who is behind it and who says so, or "Unknown" / "Not attributed".
+
+Status
+: What's still unclear, denials, deadlines, or what happens next.
 ```
+
+The summary is a Markdown definition list with exactly these three terms, in this order (a term line, then a line starting with `: `, then a blank line). The site shows it as a labeled grid and Discord as bold lead-ins.
+
+- **At most 75 words in total, and no sentence over 30 words.** Split long sentences; don't chain clauses with semicolons. Each line is one or two sentences.
+- **Who** is always present. Use "Unknown" when nobody has attributed it, and keep attribution hedged as the source hedges it (`claimed` items: "Claimed by X; not verified").
+- Leave out detail that doesn't fit. Long lists (e.g. a batch of CVEs) keep the most important item and summarize the rest ("and three others"); the source link has the full list.
+- When updating an older entry whose summary is a plain paragraph, leave the paragraph as it is unless the update changes the summary anyway; then rewrite it in this format.
 
 When updating an entry, bump `lastmod`, append to `label_history` if the label changed, and add new sources. A correction goes in `correction` and the entry stays.
 
