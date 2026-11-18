@@ -1,7 +1,7 @@
 ---
 title: "Google details Russian FSB-linked group using one US victim's identity to breach another"
 date: 2026-11-18T14:33:00Z
-lastmod: 2026-11-18T14:33:00Z
+lastmod: 2026-11-18T16:14:08Z
 label: reported
 label_history:
   - { at: 2026-11-18T14:33:00Z, label: reported }
@@ -10,6 +10,7 @@ countries: [us]
 sources:
   - { name: "Google Threat Intelligence Group", url: "https://cloud.google.com/blog/topics/threat-intelligence/cold-relic-a-case-study-in-impersonation-and-compromise", tier: "2" }
   - { name: "SecurityWeek", url: "https://www.securityweek.com/russian-apt-poses-as-employee-of-hacked-firm-to-breach-another-us-organization/", tier: "3" }
+  - { name: "The Record", url: "https://therecord.media/russia-cyber-espionage-google", tier: "3" }
 submitted_by: rescon
 significant: false
 correction: null
