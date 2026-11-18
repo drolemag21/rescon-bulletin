@@ -60,7 +60,7 @@ When updating an entry, bump `lastmod`, append to `label_history` if the label c
 
 ## Scheduled tasks
 
-Scheduled work goes through the long-lived **dispatcher session** (its id is in the root `CLAUDE.md` role table), which starts a fresh session per job. See `docs/decisions/` for why.
+Scheduled work goes through the long-lived **dispatcher session** (the session tagged `rescon:dispatcher`; find it with `list_sessions` and its tags), which starts a fresh session per job. See `docs/decisions/` for why.
 
 - `RESCON scheduled runs` exists only during timed windows (cron = the interval, e.g. `0 */6 * * *`). `RESCON weekly source report` is permanent (Mondays 15:00 UTC): never delete or change it when a level changes or a window expires, and never count it as a duplicate. Both are created with `create_trigger`, `persistent_session_id` = the dispatcher. Never use `create_new_session_on_fire`. Use `list_triggers` before creating one; never leave duplicates.
 - Task prompts can only be edited from inside the dispatcher, so they stay generic. Canonical prompts when creating them:

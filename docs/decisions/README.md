@@ -38,3 +38,4 @@ What this makes easier or harder; follow-ups.
 | 0007 | Source access fallbacks and per-source access notes | Accepted |
 | 0008 | Role-based instruction files | Accepted |
 | 0009 | Change control: content direct to main, system changes by PR | Accepted |
+| 0010 | Identify the dispatcher by tag, not session id | Accepted |
