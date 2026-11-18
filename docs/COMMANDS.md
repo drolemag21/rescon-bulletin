@@ -52,10 +52,10 @@ Given to RESCON in a Claude Code session, in plain words. Exact wording isn't re
 |---|---|
 | `Inbox` | Shows open items in `docs/INBOX.md` (things runs flagged for the maintainer) with a recommendation for each, and resolves them as you decide. |
 
-### Runner
+### Scheduling
 | Command | Effect |
 |---|---|
-| `New runner` | Replaces the runner session (where scheduled runs happen) with a fresh one, to reset its growing context. Repoints the scheduled tasks, updates CLAUDE.md, archives the old runner. |
+| `New dispatcher` | Replaces the dispatcher session (which starts a fresh session for each scheduled run) if it's gone or has grown large. Repoints the scheduled tasks, updates CLAUDE.md, archives the old one. |
 
 ### Discord
 | Command | Effect |

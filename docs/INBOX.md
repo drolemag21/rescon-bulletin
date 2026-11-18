@@ -12,6 +12,7 @@ Format: `- [ ] YYYY-MM-DD · origin · item` where origin is `run <session id>` 
 - [ ] 2026-11-18 · run session_018GeJfTjFhjvxL3pXMVcUdw · **Equinor significance vs label.** The Equinor entry is `reported` (Equinor's statement read via The Record; equinor.com is not allowlisted) but `significant: true`, while the criterion says "a confirmed attack". Either allow equinor.com and confirm it, or tighten/clarify the rule on whether a victim statement read via coverage counts.
 - [ ] 2026-11-18 · work session · **"Widely deployed" is ambiguous.** Cisco BroadWorks (exploited, CISA KEV, carrier platform) and Perforce Puppet (exploited, KEV) were both left non-significant as judgement calls. Define the threshold, e.g. "on CISA KEV and used across a whole sector".
 - [ ] 2026-11-18 · work session · **Unreachable sources.** The environment service refused to allowlist Reuters and/or AP. CERT-FR (ANSSI advisories) and ACSC time out from sessions even when allowed. equinor.com and cnn.com are not allowlisted (only needed when an item comes from them).
-- [ ] 2026-11-18 · work session · **Switch scheduled runs to the dispatcher model** (runner starts a fresh session per run). Tested successfully with session_018GeJfTjFhjvxL3pXMVcUdw. Awaiting go-ahead.
 
 ## Resolved
+
+- [x] 2026-11-18 · work session · **Switch scheduled runs to the dispatcher model.** → 2026-11-18: switched; the runner session is now the dispatcher and each run gets a fresh session. Dispatcher behaviour lives in CLAUDE.md because task prompts can only be edited from inside the dispatcher.
