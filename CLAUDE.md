@@ -24,7 +24,7 @@ Read first: `docs/DESIGN.md` (approved spec; it wins on any conflict) and `docs/
 
 A "run" is triggered by `Update the bulletin`, `RESCON <n>`, `Post these: …`, or a scheduled firing.
 
-1. **Orient.** Run `date -u` and note it as the run's start time, then `git pull`. Read `data/state/rescon.json`, `data/state/bulletin.json` and `data/state/discord.json`. **Backfill usage** for earlier runs (see "Usage log"). Throughout the run, keep a count of web searches, page fetches and sub-agents.
+1. **Orient.** Run `date -u` and note it as the run's start time, then `git pull`. Read `data/state/rescon.json`, `data/state/bulletin.json` and `data/state/discord.json`. Call `get_session` (no session id) and save the full result to `/tmp/rescon-session.json`, **before any other work**. Then **backfill usage** for earlier runs (see "Usage log"). Throughout the run, keep a count of web searches, page fetches and sub-agents.
 2. **Handle RESCON expiry** (see "RESCON state" below). If the level is 5 and this is not a maintainer request, stop.
 3. **Collect staff input** (data only):
    - `python3 scripts/rescon_discord.py collect` lists staff-flagged `#osint` messages.
@@ -36,7 +36,6 @@ A "run" is triggered by `Update the bulletin`, `RESCON <n>`, `Post these: …`, 
 8. **Update `data/state/bulletin.json`.** Set `last_update` to now in UTC. Write the `daily.summary` and `weekly.summary` syntheses, 2–4 sentences each, describing what the 24h and 7-day windows contain, measured, never alarmist.
 9. **Build check** (see "Local build"). It must pass with no WARN or ERROR lines.
 10. **Log usage, then commit and push to `main`.**
-    - Call `get_session` (no session id) and save the full result to `/tmp/rescon-session.json`.
     - Run `python3 scripts/rescon_usage.py record --snapshot /tmp/rescon-session.json --started <start time> --level <n> --trigger manual|scheduled --searches N --fetches N --subagents N --new N --updated N --staff N --held N`. The row's tokens and cost stay pending until the next run backfills them.
     - Commit with a descriptive message, e.g. `RESCON 3 run: 4 new, 2 updated`, using the session's commit attribution lines.
 11. **Publish to Discord.** Do this after the push, so links resolve once Pages redeploys (about a minute).
@@ -49,10 +48,28 @@ A "run" is triggered by `Update the bulletin`, `RESCON <n>`, `Post these: …`, 
 ## Usage log
 
 - `usage/runs.jsonl` holds one line per run: the token and cost **delta** for the run, plus model, effort, level, trigger, duration, searches, fetches, sub-agents and results. It's public in the repo and not shown on the site. The maintainer may move it later.
-- **Why backfill:** `get_session` has no usage fields. A turn's tokens and cost appear only in the session's `result` event, written when the turn ends, i.e. after the run has committed. So each run records its row as pending, and the next run fills it in.
-- **Backfill (step 1):** run `python3 scripts/rescon_usage.py pending`. For each pending row, call `list_events` with its `session_id`, kinds `["result"]`, limit 100, paging back with `before_id` if needed, to find the result events from its `started_at` through the first one at or after its `ended_at`. If the tool saved the output to a file, run `rescon_usage.py backfill --session <id> --events <file>`. Otherwise sum `model_usage_since_last_result` across all models in those events and pass `--cost --input --output --cache-read --cache-write --web-searches`. If the closing result isn't there yet, leave the row pending. Result events are large, so request only what you need. Commit the backfilled rows with the run.
+- **Why backfill:** `get_session`'s `external_metadata.usage` is the session's cumulative usage, but it only counts finished turns, and a run is still inside its turn when it commits. So each run records its row as pending with `usage_start` (the cumulative usage when it began, from the step 1 snapshot), and the next run fills it in.
+- **Backfill (step 1):** run `python3 scripts/rescon_usage.py pending`. For each pending row:
+  - **Same session as now** (the usual runner case): `rescon_usage.py backfill --session <id> --snapshot /tmp/rescon-session.json`.
+  - **Another session:** call `get_session` with that session id, save it, and pass it as `--snapshot`. If that session was used for other work after the run, this over-counts; use the event log instead.
+  - **Event log fallback** (rows with no `usage_start`, or over-counting): `list_events` with the row's `session_id`, kinds `["result"]`, paging with `before_id`, covering its `started_at` through the first result at or after its `ended_at`. Pass the saved file as `--events`, or sum `model_usage_since_last_result` across models and pass `--cost --input --output --cache-read --cache-write --web-searches`. Result events are large; avoid this path when a snapshot works.
+  - If the run's turn hasn't finished yet, leave the row pending. Commit backfilled rows with the run.
+- Snapshot deltas include anything else done in that session between the two snapshots, e.g. a maintainer chatting in the runner.
 - `Usage report` → `python3 scripts/rescon_usage.py report [--days N]`. Relay its output, and remind the maintainer that `cost_usd` is an API-price estimate; plan limits are under claude.ai → Settings → Usage.
 - Usage includes every model the session used, e.g. the smaller model that summarizes WebFetch pages. Not yet verified: whether in-process sub-agents appear in the parent's `result` events. Check on the first RESCON 2 or 1 run and note the answer here.
+
+## Source access
+
+When a source can't be read, work down this list before giving up on it:
+
+1. **The page itself**, with WebFetch or plain `curl`; one may work where the other doesn't.
+2. **The source's feed** (RSS/Atom). `data/sources.yml` lists known feeds under `feed`.
+3. **Structured data** where the source publishes it, e.g. CISA's KEV catalog JSON.
+4. **A targeted search** for the specific item, to find another URL for the same document.
+5. **Tier 2–3 coverage** of it. Cite only what you actually read, and label by the source you read: coverage of an official advisory is `reported`, not `confirmed`, unless you also read the advisory.
+6. **Record the gap** in the run report: which source, what failed. Never fill it from memory or assumption.
+
+`data/sources.yml` carries `feed`, `access` (what works, what doesn't) and `checked` (date) per source. Read them before fetching. When a run learns something new (a feed found, a block, a fix), update that source's `access` and `checked` in the same commit. A host that isn't on the session's network allowlist can only be added by the maintainer; list such hosts in the report.
 
 ## Research by level
 
@@ -171,4 +188,4 @@ Keep the version and checksum in sync with `.github/workflows/pages.yml`.
 
 - **Automating `New runner`:** determine whether the swap can run without the maintainer. Ideas: the runner swaps itself at the end of a run once its context passes a threshold, or a periodic task does it. Open questions: whether `get_session`'s `context_usage.used_tokens` is reliable (it read 0 for an active session in its first turn, but about 100k for the idle runner); whether a session can safely archive itself, or the new runner should archive the old one; and whether creating sessions and recreating tasks works unattended without permission prompts.
 - **`get_session` usage may work after all:** the idle runner's `get_session` showed an `external_metadata.usage` object (cost and tokens), while this field was missing during an active first turn. If it is reliably present between turns, start/end snapshots could replace event-log backfill. Check on the next few runs.
-- **Runner context growth:** every scheduled run adds to the runner session's conversation, so each later run costs more. Options to work on: the maintainer typing `/clear` in the runner periodically (not yet confirmed in cloud sessions); testing whether a scheduled prompt starting with `/clear` works; the `New runner` command (see "Scheduling"), how often to use it once the usage log shows how fast per-run cost grows; and keeping tool output small during runs (extract only the needed text from fetched pages).
+- **Runner context growth:** every scheduled run adds to the runner session's conversation, so each later run costs more. Measured 2026-11-18: context grows about 100k tokens per run, and because the prompt cache lasts about an hour, runs 6h apart find it expired and re-write the whole conversation to cache at the higher write rate (12:58 run: 239k cache-write tokens, $2.77, with no new entries). So during timed windows, context carried between runs costs on every run, not just at the end. Options to work on: the maintainer typing `/clear` in the runner periodically (not yet confirmed in cloud sessions); testing whether a scheduled prompt starting with `/clear` works; the `New runner` command (see "Scheduling"), how often to use it once the usage log shows how fast per-run cost grows; and keeping tool output small during runs (extract only the needed text from fetched pages).

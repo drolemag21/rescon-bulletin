@@ -4,12 +4,15 @@
 A run's token/cost usage is only published when the session's turn ends (in its
 `result` event), which is after the run has committed. So:
 
-  record    at the end of a run: writes the row with usage pending.
-            --snapshot FILE (a get_session result) gives model, effort and session id.
-  backfill  at the start of the NEXT run: fills in a pending row from that session's
-            `result` events (list_events kinds ["result"]). Either pass --events FILE
-            (a saved list_events result) or the summed numbers directly:
-            --cost --input --output --cache-read --cache-write [--web-searches].
+  record    at the end of a run: writes the row with usage pending. --snapshot FILE is the
+            get_session result taken at the START of the run: it gives model, effort, session
+            id and the session's cumulative usage so far (usage_start).
+  backfill  at the start of the NEXT run, for a pending row:
+            --snapshot FILE  a fresh get_session result for the row's session. Usage is
+                             (snapshot usage - usage_start). Preferred. get_session's usage
+                             only counts finished turns, so take it before the run's work.
+            --events FILE    a saved list_events result (kinds ["result"]), or the summed
+                             numbers: --cost --input --output --cache-read --cache-write.
   pending   lists rows still waiting for usage (session id and time window).
   report    [--days N]  averages per level and per model/effort, daily totals, projection.
 """
@@ -48,8 +51,10 @@ def load_snapshot(path: str) -> dict:
     d = json.loads(pathlib.Path(path).read_text())
     c = d.get("ccr", d)
     meta, ctx = c.get("external_metadata", {}), c.get("session_context", {})
+    u = meta.get("usage") or {}   # absent until the session's first turn has finished
     return {"model": meta.get("last_served_model") or ctx.get("model"),
-            "effort": ctx.get("effort_level"), "session_id": c.get("id")}
+            "effort": ctx.get("effort_level"), "session_id": c.get("id"),
+            "usage": {k: u.get(k, 0) or 0 for k in FIELDS}}
 
 
 def cmd_record(a):
@@ -61,6 +66,7 @@ def cmd_record(a):
         "level": a.level, "trigger": a.trigger,
         "model": snap.get("model"), "effort": snap.get("effort"),
         **{k: None for k in FIELDS}, "usage_pending": True,
+        "usage_start": snap.get("usage"),
         "searches": a.searches, "fetches": a.fetches, "subagents": a.subagents,
         "new": a.new, "updated": a.updated, "staff_items": a.staff, "held": a.held,
         "session_id": snap.get("session_id"),
@@ -107,13 +113,23 @@ def cmd_backfill(a):
         sys.exit("No pending row for that session.")
     r = pend[0]
     start = iso(r["started_at"]) if r.get("started_at") else iso(r["ended_at"]) - dt.timedelta(minutes=r.get("minutes") or 0)
-    if a.events:
+    if a.snapshot:
+        s = load_snapshot(a.snapshot)
+        if s["session_id"] != r["session_id"]:
+            sys.exit("Snapshot is for a different session.")
+        if not r.get("usage_start"):
+            sys.exit("Row has no usage_start; use --events instead.")
+        tot = {k: s["usage"][k] - r["usage_start"][k] for k in FIELDS}
+        tot["web_searches"] = None
+        if tot["cost_usd"] <= 0:
+            sys.exit("No usage since the run started: its turn may not have finished yet.")
+    elif a.events:
         tot = sum_results(a.events, start, iso(r["ended_at"]))
     else:
         tot = {"input_tokens": a.input, "output_tokens": a.output, "cache_read_tokens": a.cache_read,
                "cache_write_tokens": a.cache_write, "cost_usd": a.cost, "web_searches": a.web_searches}
     tot["cost_usd"] = round(tot["cost_usd"], 4)
-    r.update({k: tot[k] for k in FIELDS}); r["usage_pending"] = False
+    r.update({k: tot[k] for k in FIELDS}); r["usage_pending"] = False; r.pop("usage_start", None)
     if tot.get("web_searches") is not None:
         r["web_searches_billed"] = tot["web_searches"]
     save_rows(rows)
@@ -204,6 +220,7 @@ def main():
     r.set_defaults(fn=cmd_record)
     b = sub.add_parser("backfill")
     b.add_argument("--session", required=True); b.add_argument("--ended-at", help="pick a specific pending row")
+    b.add_argument("--snapshot", help="fresh get_session result for the row's session")
     b.add_argument("--events", help="saved list_events result (kinds result)")
     b.add_argument("--cost", type=float, default=0.0)
     for k in ("input", "output", "cache-read", "cache-write"):
