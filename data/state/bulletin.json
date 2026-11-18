@@ -1,5 +1,9 @@
 {
-  "last_update": null,
-  "daily": { "summary": "" },
-  "weekly": { "summary": "" }
+  "last_update": "2026-11-18T05:29:21Z",
+  "daily": {
+    "summary": "First RESCON run, at RESCON 3, covering the past seven days of public reporting. Two FBI alerts lead: one on ARTEX, an AI framework that automates intrusions and is being used against several critical sectors, and one attributing a $400 million crypto-theft scheme to North Korean state hackers, alongside a $1.2 billion seizure of funds stolen from Binance. Romania confirmed it contained a Russian Turla intrusion into government email, and researchers reported exploitation attempts against newly disclosed flaws in Copeland refrigeration controllers."
+  },
+  "weekly": {
+    "summary": "The week's reporting centres on attackers using AI to speed up intrusions: the FBI, Google and Unit 42 all describe autonomous attack frameworks in real operations, and Google says Chinese state groups are building their own. State-linked activity reported this week includes North Korean financial theft, which the FBI says has stolen over $400 million through one scheme, and Russian espionage against Romanian government email. Refrigeration controllers remain a focus after October's attacks on French supermarkets, with newly disclosed flaws already being probed. No confirmed disruption of US or allied critical infrastructure was reported in this window."
+  }
 }

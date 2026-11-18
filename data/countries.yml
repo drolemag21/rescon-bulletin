@@ -8,6 +8,7 @@ de:   { name: Germany,        flag: "🇩🇪" }
 fr:   { name: France,         flag: "🇫🇷" }
 nl:   { name: Netherlands,    flag: "🇳🇱" }
 pl:   { name: Poland,         flag: "🇵🇱" }
+ro:   { name: Romania,        flag: "🇷🇴" }
 ua:   { name: Ukraine,        flag: "🇺🇦" }
 jp:   { name: Japan,          flag: "🇯🇵" }
 kr:   { name: South Korea,    flag: "🇰🇷" }
