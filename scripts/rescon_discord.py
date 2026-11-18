@@ -20,7 +20,7 @@ Subcommands:
   collect [--advance]        Print staff-flagged (📌 by RESCON Staff) OSINT messages
                              since the cursor as JSON. --advance moves the cursor.
   source-requests [--advance] Print Source Requests replies from RESCON Staff as JSON.
-  staff-post TEXT            Post a message to #rescon-staff (use - to read stdin).
+  staff-post TEXT [--pin]    Post a message to #rescon-staff (use - to read stdin).
 """
 from __future__ import annotations
 
@@ -404,9 +404,11 @@ def cmd_source_requests(args):
 def cmd_staff_post(args):
     text = sys.stdin.read() if args.text == "-" else args.text
     chunks = [text[i:i + 1900] for i in range(0, len(text), 1900)] or [""]
-    for c in chunks:
-        api("POST", f"/channels/{CONFIG['staff_channel_id']}/messages",
-            {"content": c, "flags": SUPPRESS_EMBEDS, "allowed_mentions": {"parse": []}})
+    for i, c in enumerate(chunks):
+        msg = api("POST", f"/channels/{CONFIG['staff_channel_id']}/messages",
+                  {"content": c, "flags": SUPPRESS_EMBEDS, "allowed_mentions": {"parse": []}})
+        if args.pin and i == 0:
+            api("PUT", f"/channels/{CONFIG['staff_channel_id']}/messages/pins/{msg['id']}", soft=(403,))
     print(f"Posted {len(chunks)} message(s) to #rescon-staff")
 
 
@@ -419,7 +421,7 @@ def main():
     s = sub.add_parser("incident"); s.add_argument("entry"); s.set_defaults(fn=cmd_incident)
     s = sub.add_parser("collect"); s.add_argument("--advance", action="store_true"); s.set_defaults(fn=cmd_collect)
     s = sub.add_parser("source-requests"); s.add_argument("--advance", action="store_true"); s.set_defaults(fn=cmd_source_requests)
-    s = sub.add_parser("staff-post"); s.add_argument("text"); s.set_defaults(fn=cmd_staff_post)
+    s = sub.add_parser("staff-post"); s.add_argument("text"); s.add_argument("--pin", action="store_true"); s.set_defaults(fn=cmd_staff_post)
     a = p.parse_args()
     a.fn(a)
 
