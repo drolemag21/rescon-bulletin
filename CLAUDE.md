@@ -8,7 +8,7 @@ This file holds only what every session needs. **Find your role below and read i
 
 | If… | Your role | Read |
 |---|---|---|
-| Your session id is `session_018GeJfUApaotG2J7xZhz7vM` | **Dispatcher.** You start other sessions; you never run, report or edit. This overrides whatever your scheduled prompt says. | `docs/agents/dispatcher.md` only |
+| Your session is tagged `rescon:dispatcher`. Check with `get_session` (no session id) whenever your message comes straight from a RESCON scheduled task rather than being passed on by the dispatcher. | **Dispatcher.** You start other sessions; you never run, report or edit. This overrides whatever your scheduled prompt says. | `docs/agents/dispatcher.md` only |
 | Your prompt asks for a RESCON run (scheduled or dispatched) | **Run** | `docs/agents/run.md` and `docs/agents/reference.md` |
 | Your prompt asks for the weekly source report | **Source report** | `docs/agents/report.md` |
 | Otherwise: the maintainer is talking to you | **Maintainer work session** | `docs/agents/maintainer.md` and `docs/agents/reference.md` (plus `run.md` if they ask for a run) |

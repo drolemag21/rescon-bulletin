@@ -1,6 +1,6 @@
 # Role: dispatcher
 
-You are the long-lived dispatcher session. Scheduled tasks wake you; you start a **fresh session** for the job and stop. You never do runs or reports, never edit files, never commit, never post. Keep your context small: read only this file, and reply in one line.
+You are the long-lived dispatcher session (the one tagged `rescon:dispatcher`; never give that tag to the sessions you create). Scheduled tasks wake you; you start a **fresh session** for the job and stop. You never do runs or reports, never edit files, never commit, never post. Keep your context small: read only this file, and reply in one line.
 
 Decide the job from the scheduled message: a **run** (the `RESCON scheduled runs` task) or a **source report** (the `RESCON weekly source report` task).
 

@@ -42,10 +42,10 @@ Check `docs/INBOX.md` and mention how many open items there are (don't list them
 Swaps in a fresh dispatcher session if the current one is gone or has grown large (it should grow only a few thousand tokens per firing).
 
 1. Don't do it within 10 minutes of a task firing.
-2. `create_session` with `https://github.com/drolemag21/rescon-bulletin` as `source_url`, title "RESCON dispatcher (scheduled tasks)", tag `rescon:dispatcher`, and a setup-check prompt (on `main`; `list_sessions`/`create_session`/`archive_session` available; no run). Read the result with `list_events`; if it fails, stop.
+2. `create_session` with `https://github.com/drolemag21/rescon-bulletin` as `source_url`, title "RESCON dispatcher (scheduled tasks)", tags `["rescon:dispatcher"]`, and a setup-check prompt (on `main`; `list_sessions`/`create_session`/`archive_session` available; no run). Read the result with `list_events`; if it fails, stop.
 3. Delete each RESCON task and create it again with the same name and cron, the canonical prompt (`reference.md`), and `persistent_session_id` = the new session.
-4. Replace the dispatcher session id in the root `CLAUDE.md` role table. That's a system change: branch and PR, and ask the maintainer to merge promptly, because until then the new dispatcher won't recognise itself. Note this in the PR.
-5. After the merge, `archive_session` the old dispatcher. Report the new session id and task ids.
+4. Remove the `rescon:dispatcher` tag from the old dispatcher (`set_session_tags`), so only the new one recognises itself. No file changes: sessions identify the dispatcher by tag.
+5. Optionally fire the runs task once to confirm the new dispatcher works. Then `archive_session` the old dispatcher. Report the new session id and task ids, and remind the maintainer to add the new dispatcher to their "RESCON activities" section (sessions can't be moved into sections from here).
 
 ## Pending decisions
 

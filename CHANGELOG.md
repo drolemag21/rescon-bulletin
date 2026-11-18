@@ -4,7 +4,7 @@ System changes only: instructions, specs, scripts, templates, workflows and poli
 
 ## Unreleased
 
-_Nothing yet._
+- The dispatcher is identified by the `rescon:dispatcher` session tag instead of a session id in `CLAUDE.md`; `New dispatcher` no longer needs a pull request (decision 0010).
 
 ## 2026-11-18
 
