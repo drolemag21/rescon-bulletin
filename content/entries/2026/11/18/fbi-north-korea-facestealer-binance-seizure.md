@@ -15,6 +15,6 @@ guidance: { name: "FBI FLASH AC-111226-MS recommendations", url: "https://www.ic
 submitted_by: rescon
 significant: true
 correction: null
-discord_thread_id: null
+discord_thread_id: "1572483924842782793"
 ---
 The FBI attributed a social-engineering scheme it calls FaceStealer to North Korean state-sponsored hackers (tracked as Sapphire Sleet, BlueNoroff, APT38 and other names): victims are lured into fake Zoom, Teams or Meet calls from hijacked accounts of people they know, then tricked into installing malware. The FBI says the scheme has stolen more than $400 million over 18 months and has been used to try to compromise open-source software maintainers. On November 12 the Justice Department also announced court-authorized seizure of more than $1.2 billion of the over $6 billion the FBI says North Korean hackers stole from Binance, along with cloud infrastructure behind FaceStealer.
