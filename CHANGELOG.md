@@ -4,7 +4,7 @@ System changes only: instructions, specs, scripts, templates, workflows and poli
 
 ## Unreleased
 
-_Nothing yet._
+- Readability: entry summaries are three labeled lines (What / Who / Status), at most 75 words with no sentence over 30; older paragraph summaries render unchanged. The home page's Weekly panel lists entries as one-line rows instead of repeating full cards. Discord incident posts show the labels as bold lead-ins (decision 0012).
 
 ## 2026-11-18
 

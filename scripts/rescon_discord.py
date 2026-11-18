@@ -297,6 +297,29 @@ def cmd_publish(args):
     print("Published")
 
 
+def discord_summary(md: str) -> str:
+    """Turn a Markdown definition-list summary ("What\n: text") into "**What:** text" lines.
+    Plain-paragraph summaries (older entries) pass through unchanged."""
+    out, term = [], None
+    for line in md.splitlines():
+        s = line.strip()
+        if s.startswith(":") and term is not None:
+            out.append(f"**{term}:** {s[1:].strip()}")
+            term = None
+            continue
+        if term is not None:
+            out.append(term)
+            term = None
+        if s and not s.startswith(":"):
+            term = s
+        elif not s:
+            if out and out[-1] != "":
+                out.append("")
+    if term is not None:
+        out.append(term)
+    return "\n".join(out).strip()
+
+
 def cmd_incident(args):
     ds = load_state("discord")
     path = pathlib.Path(args.entry).resolve()
@@ -309,7 +332,7 @@ def cmd_incident(args):
         tags.append(ds["tags"].get("staff"))
     tags = [t for t in dict.fromkeys(tags) if t][:5]  # Discord allows max 5 applied tags
     lab = LABELS[e.get("label", "reported")]
-    body = [f"**{lab['icon']} {lab['name'].upper()}**", "", e["_summary"], ""]
+    body = [f"**{lab['icon']} {lab['name'].upper()}**", "", discord_summary(e["_summary"]), ""]
     if e.get("correction"):
         body.insert(0, f"**Correction:** {e['correction']['note']}\n")
     body += [f"🔗 [{s['name']}](<{s['url']}>)" + (" 🔒" if s.get("paywalled") else "") for s in e.get("sources", [])]

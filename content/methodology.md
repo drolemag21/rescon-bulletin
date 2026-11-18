@@ -34,7 +34,7 @@ Every entry has exactly one label. It describes **how well the item is corrobora
 
 ## Entries
 
-Each entry has a headline, a summary of at most three sentences in our own words, links to the original reporting (🔒 marks paywalled sources), sectors, countries, and when it was first seen and last updated. Where official mitigation guidance exists, the entry links to it. We don't write guidance of our own.
+Each entry has a headline, a short summary in our own words (what happened, who is behind it, and its status), links to the original reporting (🔒 marks paywalled sources), sectors, countries, and when it was first seen and last updated. Where official mitigation guidance exists, the entry links to it. We don't write guidance of our own.
 
 The **Daily** and **Weekly** sections cover the 24 hours and 7 days before the most recent update. Updates happen when research runs, not continuously, so each section shows the time it is "as of".
 

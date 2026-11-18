@@ -1,0 +1,13 @@
+{{- /* One-line entry for the Weekly panel: label dot, headline, flags and last activity. The full card is one click away. */ -}}
+{{- $label := .Params.label | default "reported" -}}
+{{- $l := index hugo.Data.labels $label -}}
+{{- $countries := .Params.countries | default slice -}}
+<div class="entry-row label-{{ $label }}{{ with .Params.correction }} is-corrected{{ end }}">
+  <span class="row-dot" title="{{ $l.name }}: {{ $l.meaning }}" aria-label="{{ $l.name }}"></span>
+  <a class="row-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+  <span class="row-meta">
+    {{- range $countries }}{{ $c := index hugo.Data.countries . }}<span title="{{ $c.name | default . }}">{{ $c.flag | default (upper .) }}</span> {{ end -}}
+    {{- with .Params.correction }}<span class="chip chip-corrected">Corrected</span> {{ end -}}
+    · {{ partial "time.html" .Lastmod }}
+  </span>
+</div>
