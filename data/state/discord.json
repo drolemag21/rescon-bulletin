@@ -1,0 +1,23 @@
+{
+  "bulletin_thread_id": "1572476037567094805",
+  "daily_message_id": "1572476039857442961",
+  "weekly_message_id": "1572476041082052650",
+  "update_line_message_id": "1572476042260783205",
+  "source_requests_message_id": "1572476043510546503",
+  "source_requests_thread_id": "1572476043510546503",
+  "osint_cursor": null,
+  "source_requests_cursor": null,
+  "tags": {
+    "sector:energy": "1572476036891807746",
+    "sector:water": "1572476036891807747",
+    "sector:telecom": "1572476036891807748",
+    "sector:healthcare": "1572476036891807749",
+    "sector:finance": "1572476036891807750",
+    "sector:gov": "1572476036891807751",
+    "label:confirmed": "1572476036891807752",
+    "label:reported": "1572476036891807753",
+    "label:unverified": "1572476036946464809",
+    "label:claimed": "1572476036946464810",
+    "staff": "1572476036946464811"
+  }
+}

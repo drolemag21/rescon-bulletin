@@ -156,7 +156,7 @@ The summary goes in the body. Timestamps must never be in the future: Hugo skips
 | OSINT channel (existing) | Where staff submissions are picked up |
 | `RESCON Staff` role | The only role whose 📌 reactions and source requests count |
 
-The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the session environment and **never in this repo**. Channel and role IDs are not secret and go in `config/discord.json`.
+The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the session environment and **never in this repo**. Channel and role IDs are not secret and go in `config/discord.json`. Message IDs, forum tag IDs and read cursors go in `data/state/discord.json`. All Discord operations go through `scripts/rescon_discord.py` (`setup`, `publish`, `incident`, `collect`, `source-requests`, `staff-post`). It uses only the Python standard library plus PyYAML, and it prints everything it reads from Discord as data.
 
 ### 7.2 Bulletin forum
 - **Pinned post "📡 RESCON Bulletin":** created by the bot, since a bot can only edit its own messages, then edited in place. It shows the current level and legend, the set-at and expiry times, the site link, and today's top 2–3 items.
