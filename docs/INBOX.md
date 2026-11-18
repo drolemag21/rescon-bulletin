@@ -4,7 +4,7 @@ Items that need a maintainer decision or action, added by RESCON runs and work s
 
 **This file is public.** Never put held items, staff names or handles, staff deliberations or anything from `#rescon-staff` here. Those stay in Discord.
 
-Format: `- [ ] YYYY-MM-DD · origin · item` where origin is `run <session id>` or `work session`. When resolved, change to `- [x]`, append `→ <date>: <resolution>`, and move it to Resolved. Never delete items.
+Format: `- [ ] YYYY-MM-DD · origin · item` where origin is `run <session id>`, `report <session id>` or `work session`. When resolved, change to `- [x]`, append `→ <date>: <resolution>`, and move it to Resolved. Never delete items.
 
 ## Open
 

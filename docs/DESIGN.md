@@ -1,6 +1,6 @@
 # RESCON Bulletin — Design Spec
 
-**Status:** Draft for review · **Last updated:** 2026-11-18
+**Status:** Approved, maintained by pull request (§11) · **Last updated:** 2026-11-18
 
 ## 1. Purpose
 
@@ -115,6 +115,7 @@ The summary goes in the body. Timestamps must never be in the future: Hugo skips
 ### 5.2 Rules
 - Tier 4b is never linked, embedded or quoted directly. That applies to staff submissions too. If a 4b-only item has no tier 2–3 coverage, it is **held** (§7.3), not posted.
 - **Exclusions:** Kaspersky (excluded for now).
+- **Label by what was read.** An official or victim statement that was only read through press coverage supports **Reported**, not Confirmed. Confirmed needs the tier 1 source or the victim's own statement itself.
 - The source list lives in `data/sources.yml` (name, URL, tier, `added_by: rescon | staff | maintainer`, date added). The site's methodology page shows it publicly.
 
 ### 5.3 Adding sources
@@ -124,6 +125,9 @@ The summary goes in the body. Timestamps must never be in the future: Hugo skips
   - Tier 4b, or flagged for another reason → held for maintainer approval.
 - **Decision log:** `docs/sources-log.md`. It's public, with one neutral line per decision (e.g. `Not added: aggregator, no original reporting`). It never contains staff names or quotes.
 - **Source report:** posted to `#rescon-staff` **weekly and on demand**, with full reasoning. The maintainer can veto any source at any time.
+
+### 5.4 Source access
+Sources block automated requests, render only with JavaScript, or time out, so runs work down a fixed fallback order before giving up on one: the page itself → its feed → structured data (e.g. CISA's KEV JSON) → a targeted search for the item → tier 2–3 coverage (labelled by what was read, §5.2) → record the gap in the run report. `data/sources.yml` also records, per source, a `feed`, an `access` note on what works, and a `checked` date; runs update these as they learn. Source hosts must be on the session environment's network allowlist, which only the maintainer can change.
 
 ---
 
@@ -193,19 +197,16 @@ The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the sess
 9. **Save state:** message IDs, the handled OSINT submissions, and the level stack.
 
 ### Scheduling
-Timed windows use scheduled tasks. Each firing starts a fresh session that reads state from the repo. When the window expires, the scheduled task is removed. The expiry check in step 1 is a backstop in case a firing is missed.
+Timed windows and the weekly source report use scheduled tasks. Sessions that a scheduled task starts on its own get no repository, so each task wakes one long-lived **dispatcher** session, which starts a **fresh session** with the repo for each run or report, archives finished ones after a day, and flags a previous run that failed. Every run therefore starts with a clean context. When a window expires, the run that notices it restores the previous level and removes the task. The expiry check at the start of every run is a backstop in case a firing is missed.
 
 ### Usage log
-Each run appends one line to `usage/runs.jsonl` (public in the repo, not shown on the site; the maintainer may move it later). A line holds the run's token and estimated-cost delta, taken from `get_session` snapshots at the start and end of the run, plus model, effort level, RESCON level, trigger, duration, searches, fetches, sub-agents and results. `Usage report` summarizes it per level and per model/effort, with daily totals and a weekly projection. `cost_usd` is an API-price estimate; plan limits are shown under claude.ai → Settings → Usage.
+Each run appends one line to `usage/runs.jsonl` (public in the repo, not shown on the site; the maintainer may move it later): model, effort level, RESCON level, trigger, duration, searches, fetches, sub-agents, results, and the run's token and estimated-cost usage. Usage is only published when a session's turn ends, after the run has committed, so each row is recorded as pending and the next run fills it in from that session's usage. Costs include each session's fixed overhead (tools, system prompt, instructions; about 87k tokens re-read on every model call), because that is what a run really costs. `Usage report` summarizes per level and per model/effort, with daily totals and a weekly projection. `cost_usd` is an API-price estimate; plan limits are shown under claude.ai → Settings → Usage.
+
+### Maintainer inbox
+Runs don't report to anyone directly, and their sessions are archived, so anything that needs the maintainer (an uncertain label or significance call, an earlier entry that looks wrong, a blocked source, an ambiguous rule, a failed step) goes in `docs/INBOX.md`. The `Inbox` command reviews and resolves items; resolved items are marked, never deleted. The file is public, so it never holds anything staff-related.
 
 ### Maintainer commands (natural language in a session)
-- `RESCON <n>` / `RESCON <n> for <duration> [every <interval>]`
-- `Update the bulletin` (one run at the current level)
-- `Post these: <links>` (manual submission)
-- `Add source <url>` / `Remove source <name>`
-- `Source report`
-- `Usage report`
-- `Mark <entry> confirmed | ruled out: <note>`
+The full list is in `docs/COMMANDS.md`: research level (`RESCON <n>` / `RESCON <n> for <duration> [every <interval>]`), `Update the bulletin`, `Post these: <links>`, label and correction changes, sources, `Source report`, `Usage report`, `Inbox` and `New dispatcher`.
 
 Only the maintainer issues commands. Staff contribute through 📌 reactions and Source Requests.
 
@@ -229,3 +230,20 @@ Only the maintainer issues commands. Staff contribute through 📌 reactions and
 | Search-engine indexing | Allowed (public awareness tool) |
 | Site name / branding | "RESCON Bulletin", minimal and dark-first |
 | Update line | On |
+
+---
+
+## 11. Change control and documentation
+
+The repo holds two kinds of change, handled differently:
+
+| Kind | Examples | Path |
+|---|---|---|
+| **Content** | Entries, state files, usage log, inbox, source access notes, staff-approved sources, new country/sector keys | Committed straight to `main` by runs (`run:`) and content commands (`content:`), so publishing never waits for review |
+| **System** | Agent instructions (`CLAUDE.md`, `docs/agents/`), this spec, the command list, scripts, templates, workflows, config, source policy | Branch and pull request, merged by the maintainer; a build check runs on every pull request |
+
+A change to instructions or scripts changes how the next scheduled run behaves, so it is treated as a release. GitHub can't enforce the split (runs and work sessions push with the same identity), so it is enforced by the agent instructions: runs, the dispatcher and the source report never change system files, and raise inbox items instead.
+
+**Agent instructions** are split by role: a short root `CLAUDE.md` (scope, who can direct RESCON, the Never list, change control, and a role table) points each session to its role file in `docs/agents/` (dispatcher, run, source report, maintainer work session, and a shared reference). Safety rules stay in the root file so they apply to every session.
+
+**History** is kept in three places: `docs/decisions/` records why significant decisions were made (one short file each, never deleted, superseded when replaced); `CHANGELOG.md` lists merged system changes by date; pull request descriptions hold the detail.
