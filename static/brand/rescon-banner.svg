@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 240" width="680" height="240">
+  <rect width="680" height="240" fill="#0d1117"/>
+  <text x="40" y="92" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="60" letter-spacing="2" fill="#e6edf3">RESCON</text>
+  <text x="42" y="128" font-family="Inter, sans-serif" font-size="20" fill="#8b98a8">Research condition</text>
+  <rect x="228" y="150" width="82" height="40" rx="5" fill="#3a4656"/>
+  <text x="269" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="22" fill="#ffffff">5</text>
+  <text x="269" y="216" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" fill="#8b98a8">Standby</text>
+  <rect x="316" y="150" width="82" height="40" rx="5" fill="#1f5f7a"/>
+  <text x="357" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="22" fill="#ffffff">4</text>
+  <text x="357" y="216" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" fill="#8b98a8">Routine</text>
+  <rect x="404" y="150" width="82" height="40" rx="5" fill="#1a7fa8"/>
+  <text x="445" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="22" fill="#ffffff">3</text>
+  <text x="445" y="216" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" fill="#8b98a8">Elevated</text>
+  <rect x="492" y="150" width="82" height="40" rx="5" fill="#1ea0d6"/>
+  <text x="533" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="22" fill="#ffffff">2</text>
+  <text x="533" y="216" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" fill="#8b98a8">Intensive</text>
+  <rect x="580" y="150" width="82" height="40" rx="5" fill="#3cc8ff"/>
+  <text x="621" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="22" fill="#04121c">1</text>
+  <text x="621" y="216" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" fill="#8b98a8">Maximum</text>
+</svg>
