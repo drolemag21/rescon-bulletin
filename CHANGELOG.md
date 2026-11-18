@@ -4,10 +4,12 @@ System changes only: instructions, specs, scripts, templates, workflows and poli
 
 ## Unreleased
 
-- The dispatcher is identified by the `rescon:dispatcher` session tag instead of a session id in `CLAUDE.md`; `New dispatcher` no longer needs a pull request (decision 0010).
+_Nothing yet._
 
 ## 2026-11-18
 
+- Significance: an attack or disruption needs a `confirmed` entry; runs read the primary statement first and raise an inbox item if its host is blocked (#3, decision 0011).
+- The dispatcher is identified by the `rescon:dispatcher` session tag instead of a session id in `CLAUDE.md`; `New dispatcher` no longer needs a pull request (#2, decision 0010).
 - Role-based instructions (#1): short root `CLAUDE.md` with a role table; `docs/agents/` for dispatcher, run, source report, maintainer and shared reference (decision 0008).
 - Change control: content straight to `main`, system files by pull request; `run:`/`content:` commit prefixes; build check on pull requests (decision 0009).
 - Decision records (`docs/decisions/`, backfilled for 2026-11-18) and this changelog.
