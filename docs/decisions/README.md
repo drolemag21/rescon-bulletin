@@ -42,3 +42,4 @@ What this makes easier or harder; follow-ups.
 | 0011 | Incident posts only for confirmed attacks; read the primary statement first | Accepted |
 | 0012 | Labeled summaries with a word limit; compact Weekly list | Accepted |
 | 0013 | Threshold for exploited-vulnerability incident posts | Accepted |
+| 0014 | One-shot firings for timed windows; leaner dispatcher | Accepted |
