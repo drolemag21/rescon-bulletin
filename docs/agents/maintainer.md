@@ -22,7 +22,7 @@ Check `docs/INBOX.md` and mention how many open items there are (don't list them
 
 | Command | How |
 |---|---|
-| `RESCON n` / `RESCON n for D [every I]` | Change `data/state/rescon.json` and the scheduled task as in `reference.md` ("RESCON state", "Scheduled tasks"), then do one run (`run.md`). |
+| `RESCON n` / `RESCON n for D [every I]` | Change `data/state/rescon.json` and the one-shot firings as in `reference.md` ("RESCON state", "Scheduled tasks"), then do one run (`run.md`). Report the firing times in UTC and the maintainer's local time. |
 | `What's the current RESCON?` | Read `data/state/rescon.json`: level, expiry, stack. |
 | `Update the bulletin` | One run at the current level (`run.md`). |
 | `Post these: <links>` | A run limited to those items: check and label them like any other, then publish (`run.md` steps 5–12). |
@@ -39,14 +39,14 @@ Check `docs/INBOX.md` and mention how many open items there are (don't list them
 
 ## New dispatcher
 
-Swaps in a fresh dispatcher session if the current one is gone or has grown large (it should grow only a few thousand tokens per firing).
+Swaps in a fresh dispatcher session if the current one is gone or has grown large. Check its `context_usage` now and then; rotate it once it passes about 300k tokens.
 
 1. Don't do it within 10 minutes of a task firing.
 2. `create_session` with `https://github.com/drolemag21/rescon-bulletin` as `source_url`, title "RESCON dispatcher (scheduled tasks)", tags `["rescon:dispatcher"]`, and a setup-check prompt (on `main`; `list_sessions`/`create_session`/`archive_session` available; no run). Read the result with `list_events`; if it fails, stop.
-3. Delete each RESCON task and create it again with the same name and cron, the canonical prompt (`reference.md`), and `persistent_session_id` = the new session.
+3. `list_triggers`, then delete each RESCON task (the weekly report and any pending `RESCON scheduled run · …` one-shots) and create it again with the same name and cron or `run_once_at`, the canonical prompt (`reference.md`), and `persistent_session_id` = the new session.
 4. Remove the `rescon:dispatcher` tag from the old dispatcher (`set_session_tags`), so only the new one recognises itself. No file changes: sessions identify the dispatcher by tag.
-5. Optionally fire the runs task once to confirm the new dispatcher works. Then `archive_session` the old dispatcher. Report the new session id and task ids, and remind the maintainer to add the new dispatcher to their "RESCON activities" section (sessions can't be moved into sections from here).
+5. Optionally `fire_trigger` a pending one-shot (or create a one-shot a few minutes out) to confirm the new dispatcher works. Then `archive_session` the old dispatcher. Report the new session id and task ids, and remind the maintainer to add the new dispatcher to their "RESCON activities" section (sessions can't be moved into sections from here).
 
 ## Pending decisions
 
-- **Dispatcher growth:** check the dispatcher's `context_usage` after a week; if it grows much faster than a few thousand tokens per firing, tighten `dispatcher.md`.
+- **Dispatcher growth:** measured ~20–25k tokens per firing before the 2026-11-19 trim (notification text, file reads, full session listings). Check after a week whether the leaner `dispatcher.md` brings that down.
