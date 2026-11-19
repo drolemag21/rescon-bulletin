@@ -8,11 +8,11 @@ _Nothing yet._
 
 ## 2026-11-19
 
-- Exploited-vulnerability incident posts need KEV or official exploitation, a dedicated official advisory, and an infrastructure/OT product; a KEV entry alone isn't enough (#5, decision 0012).
+- Exploited-vulnerability incident posts need KEV or official exploitation, a dedicated official advisory, and an infrastructure/OT product; a KEV entry alone isn't enough (#5, decision 0013).
 
 ## 2026-11-18
 
-- Readability: entry summaries are three labeled lines (What / Who / Status), at most 75 words with no sentence over 30; older paragraph summaries render unchanged. The home page's Weekly panel lists entries as one-line rows instead of repeating full cards. Discord incident posts show the labels as bold lead-ins (#5, decision 0012).
+- Readability: entry summaries are three labeled lines (What / Who / Status), at most 75 words with no sentence over 30; older paragraph summaries render unchanged. The home page's Weekly panel lists entries as one-line rows instead of repeating full cards. Discord incident posts show the labels as bold lead-ins (#4, decision 0012).
 - Significance: an attack or disruption needs a `confirmed` entry; runs read the primary statement first and raise an inbox item if its host is blocked (#3, decision 0011).
 - The dispatcher is identified by the `rescon:dispatcher` session tag instead of a session id in `CLAUDE.md`; `New dispatcher` no longer needs a pull request (#2, decision 0010).
 - Role-based instructions (#1): short root `CLAUDE.md` with a role table; `docs/agents/` for dispatcher, run, source report, maintainer and shared reference (decision 0008).
