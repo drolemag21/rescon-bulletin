@@ -40,4 +40,5 @@ What this makes easier or harder; follow-ups.
 | 0009 | Change control: content direct to main, system changes by PR | Accepted |
 | 0010 | Identify the dispatcher by tag, not session id | Accepted |
 | 0011 | Incident posts only for confirmed attacks; read the primary statement first | Accepted |
+| 0012 | Threshold for exploited-vulnerability incident posts | Accepted |
 | 0012 | Labeled summaries with a word limit; compact Weekly list | Accepted |

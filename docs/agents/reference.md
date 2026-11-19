@@ -16,7 +16,10 @@ Label by what you actually read: an official statement you only read through pre
 - A confirmed attack or disruption affecting in-scope critical infrastructure.
 - A new joint advisory from US and/or allied agencies.
 - Disclosure of a major nation-state campaign or a pre-positioning campaign.
-- An actively exploited vulnerability in widely deployed infrastructure or OT technology, with an official advisory.
+- An actively exploited vulnerability in widely deployed infrastructure or OT technology, with an official advisory. **All three must hold:**
+  1. **Exploited:** listed in CISA's KEV catalog, or an official source says it is being exploited.
+  2. **Dedicated official advisory:** a CISA alert or advisory, a joint advisory, a CISA ICS advisory, or an allied agency or CERT alert specifically about this vulnerability. A KEV catalog entry alone does not count.
+  3. **Infrastructure or OT:** internet-facing network and security products (VPNs, firewalls, routers, email gateways, remote access, identity systems); virtualisation and core enterprise platforms whole sectors depend on; telecom carrier platforms; or OT/ICS products used in critical-infrastructure sectors. Not developer tools, libraries or desktop software, unless an official source says they are being exploited against critical infrastructure.
 
 An entry is only significant if its own label supports the criterion: an attack or disruption needs `confirmed`.
 

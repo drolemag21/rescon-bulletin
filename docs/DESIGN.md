@@ -170,7 +170,7 @@ The bot is a dedicated `RESCON` bot. Its token is stored as a secret in the sess
   - a confirmed attack or disruption affecting in-scope critical infrastructure
   - a new joint advisory from US and/or allied agencies
   - disclosure of a major nation-state campaign or a pre-positioning campaign
-  - an actively exploited vulnerability in widely deployed infrastructure or OT technology, with an official advisory
+  - an actively exploited vulnerability in widely deployed infrastructure or OT technology, with an official advisory: it must be exploited (CISA KEV or an official statement), have a **dedicated** official advisory or alert (a KEV catalog entry alone doesn't count), and affect internet-facing network and security products, core enterprise or virtualisation platforms, telecom carrier platforms, or OT/ICS products used in critical infrastructure
 
   An attack or disruption gets a post only once it's **Confirmed** (§4.1, §5.2). If only press coverage is available, RESCON tries to read the victim's or agency's own statement; if it can't, the entry is published as Reported and the incident post waits for confirmation.
 - **Forum tags:** Energy, Water, Telecom, Healthcare, Finance, Gov, Confirmed, Reported, Unverified, Claimed, Staff Submitted.
