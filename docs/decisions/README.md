@@ -2,7 +2,7 @@
 
 One short file per significant decision about how RESCON works: what was decided, what else was considered, and why. Commit history shows *what* changed; these explain *why it's built this way*.
 
-- File name: `NNNN-short-title.md`, numbered in order. Never renumber or delete; if a decision is replaced, set the old one's status to `Superseded by NNNN` and write a new one.
+- File name: `NNNN-short-title.md`, numbered in order. Before merging, check the number against `main` in case another pull request took it first. Never renumber or delete; if a decision is replaced, set the old one's status to `Superseded by NNNN` and write a new one.
 - Added or updated in the same pull request as the change it explains.
 - Keep each to about a page.
 
@@ -40,5 +40,5 @@ What this makes easier or harder; follow-ups.
 | 0009 | Change control: content direct to main, system changes by PR | Accepted |
 | 0010 | Identify the dispatcher by tag, not session id | Accepted |
 | 0011 | Incident posts only for confirmed attacks; read the primary statement first | Accepted |
-| 0012 | Threshold for exploited-vulnerability incident posts | Accepted |
 | 0012 | Labeled summaries with a word limit; compact Weekly list | Accepted |
+| 0013 | Threshold for exploited-vulnerability incident posts | Accepted |
