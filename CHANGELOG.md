@@ -4,7 +4,11 @@ System changes only: instructions, specs, scripts, templates, workflows and poli
 
 ## Unreleased
 
-- Sources: CNN and Politico added as tier 3 sources, hosts allowlisted. Politico pages are behind a Cloudflare bot challenge, so runs can't read them yet.
+_Nothing yet._
+
+## 2026-11-21
+
+- Sources: CNN and Politico added as tier 3 sources, hosts allowlisted. Politico pages are behind a Cloudflare bot challenge, so runs can't read them yet (#8).
 
 ## 2026-11-19
 
