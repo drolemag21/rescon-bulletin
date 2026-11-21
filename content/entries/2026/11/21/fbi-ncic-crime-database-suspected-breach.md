@@ -16,7 +16,7 @@ correction: null
 discord_thread_id: null
 ---
 What
-: CNN reported on November 20 that the FBI is investigating an apparent breach of the National Crime Information Center, citing two people briefed on it. Police nationwide use NCIC for warrants, stolen property and background checks.
+: CNN reported on November 20 that the FBI is investigating an apparent breach of the National Crime Information Center, citing two people briefed on it. Police use NCIC for warrants, stolen property and background checks.
 
 Who
 : Unknown. No link to the earlier ShinyHunters breach of the FBI has been reported.
