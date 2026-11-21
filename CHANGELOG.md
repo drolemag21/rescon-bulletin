@@ -4,7 +4,7 @@ System changes only: instructions, specs, scripts, templates, workflows and poli
 
 ## Unreleased
 
-- Sources: CNN added as a tier 3 source (`www.cnn.com` allowlisted). Politico approved but not added: the environment service refused its hosts.
+- Sources: CNN and Politico added as tier 3 sources, hosts allowlisted. Politico pages are behind a Cloudflare bot challenge, so runs can't read them yet.
 
 ## 2026-11-19
 
