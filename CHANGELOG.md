@@ -6,6 +6,10 @@ System changes only: instructions, specs, scripts, templates, workflows and poli
 
 _Nothing yet._
 
+## 2026-11-21
+
+- Sources: CNN and Politico added as tier 3 sources, hosts allowlisted. Politico pages are behind a Cloudflare bot challenge, so runs can't read them yet (#8).
+
 ## 2026-11-19
 
 - Timed windows use one-shot firings created up front (with a stand-down firing after expiry); runs never touch scheduled tasks. Dispatcher reads only its own file and lists at most 10 sessions per firing (#7, decision 0014).
