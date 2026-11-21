@@ -4,7 +4,7 @@ System changes only: instructions, specs, scripts, templates, workflows and poli
 
 ## Unreleased
 
-_Nothing yet._
+- Sources: CNN added as a tier 3 source (`www.cnn.com` allowlisted). Politico approved but not added: the environment service refused its hosts.
 
 ## 2026-11-19
 
