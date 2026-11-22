@@ -1,7 +1,14 @@
 {
   "level": 4,
-  "set_at": "2026-11-21T17:15:54Z",
-  "expires_at": null,
-  "interval": null,
-  "stack": []
+  "set_at": "2026-11-22T14:39:22Z",
+  "expires_at": "2026-11-29T14:39:22Z",
+  "interval": "12h",
+  "stack": [
+    {
+      "level": 4,
+      "set_at": "2026-11-21T17:15:54Z",
+      "expires_at": null,
+      "interval": null
+    }
+  ]
 }
