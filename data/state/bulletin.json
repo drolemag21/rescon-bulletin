@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-11-23T02:41:27Z",
+  "last_update": "2026-11-23T14:41:51Z",
   "daily": {
-    "summary": "A quiet weekend with no new in-scope reporting overnight. The past day's items remain Microsoft's report that attackers exploited a flaw in Entra Connect Health to read tenant metadata, and Rackspace's disclosure that leaked credentials exposed secrets in some customers' Kubernetes clusters. More than 40 Irish credit unions have reported a breach at their mobile-app supplier. The FBI's national crime database breach is still unexplained, and the bureau has not commented."
+    "summary": "A quiet day for new in-scope reporting. Austria's Foreign Ministry says hackers breached a provider-run website and reached staff contact details; nobody has attributed it. Just outside the window are Microsoft's report of an exploited Entra Connect Health flaw and Rackspace's disclosure that leaked credentials exposed some customers' Kubernetes secrets. The FBI's national crime database breach is still unexplained."
   },
   "weekly": {
-    "summary": "AI-assisted intrusion is the week's main theme: the FBI, Google, Unit 42 and Amazon describe autonomous attack frameworks in real operations, and Bell Canada and the European Commission say AI-driven attackers breached them. State-linked activity includes a China-nexus group's vCenter zero-day campaign, Russian espionage against Romanian government email and US organizations, and North Korean financial theft. Equinor's IT incident, now stopped with production unaffected, remains the most notable incident at an allied energy operator. Exploited flaws in vCenter, Cisco Expressway, Entra Connect Health, Puppet and REDCap, plus critical F5 BIG-IP and NGINX fixes, keep patching pressure high."
+    "summary": "AI-assisted intrusion is the week's main theme: the FBI, Google, Unit 42 and Amazon describe autonomous attack frameworks in real operations, and Bell Canada and the European Commission say AI-driven attackers breached them. State-linked activity includes a China-nexus group's vCenter zero-day campaign, Russian espionage against Romanian government email and US organizations, and North Korean financial theft. Government breaches in Austria, West Virginia and at the FBI remain unattributed, and Equinor's IT incident is the most notable at an allied energy operator. Exploited flaws in vCenter, Cisco Expressway, Entra Connect Health, Puppet and REDCap keep patching pressure high."
   }
 }
