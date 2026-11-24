@@ -1,7 +1,7 @@
 ---
 title: "Norwegian energy company Equinor says it has stopped a cyberattack on its IT systems"
 date: 2026-11-18T14:33:00Z
-lastmod: 2026-11-21T17:19:00Z
+lastmod: 2026-11-24T02:42:00Z
 label: confirmed
 label_history:
   - { at: 2026-11-18T14:33:00Z, label: reported }
@@ -12,6 +12,7 @@ sources:
   - { name: "Equinor statement (17 Nov, updated 20 Nov)", url: "https://www.equinor.com/news/20261711-equinor-detected-cyber-attack", tier: "1" }
   - { name: "The Record", url: "https://therecord.media/norway-equinor-cyberattack-energy", tier: "3" }
   - { name: "SecurityWeek", url: "https://www.securityweek.com/in-other-news-norwegian-energy-firm-cyberattacks-supercomputer-hack-new-nightmare-eclipse-exploit/", tier: "3" }
+  - { name: "The Record (Azure APIM link)", url: "https://therecord.media/norway-microsoft-cyberattack-equinor", tier: "3" }
 submitted_by: rescon
 significant: true
 correction: null
@@ -24,4 +25,4 @@ Who
 : Not attributed. Equinor says the attack does not appear to have specifically targeted it.
 
 Status
-: Production ran normally, with no sign of stolen or altered data. Police were notified. SecurityWeek reports Skagerak Energi saw a possible attempted intrusion a day after Equinor's disclosure.
+: Production ran normally, with no sign of stolen or altered data. Norway's NSM, as reported, links this and a Skagerak Energi incident to an exploited Azure API Management flaw.

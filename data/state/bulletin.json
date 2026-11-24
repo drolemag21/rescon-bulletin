@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-11-23T14:41:51Z",
+  "last_update": "2026-11-24T02:44:00Z",
   "daily": {
-    "summary": "A quiet day for new in-scope reporting. Austria's Foreign Ministry says hackers breached a provider-run website and reached staff contact details; nobody has attributed it. Just outside the window are Microsoft's report of an exploited Entra Connect Health flaw and Rackspace's disclosure that leaked credentials exposed some customers' Kubernetes secrets. The FBI's national crime database breach is still unexplained."
+    "summary": "The main development links last week's Norwegian energy incidents to a cloud flaw. Microsoft says an Azure API Management weakness exposed stored secrets, and Norway's NSM reportedly ties it to Equinor and Skagerak Energi. South Korea's power utility KEPCO disclosed a breach of its billing and procurement systems. CISA added exploited N-able Mail Assure and MONAI Label flaws to its KEV catalog, and the FBI crime database breach remains unexplained."
   },
   "weekly": {
-    "summary": "AI-assisted intrusion is the week's main theme: the FBI, Google, Unit 42 and Amazon describe autonomous attack frameworks in real operations, and Bell Canada and the European Commission say AI-driven attackers breached them. State-linked activity includes a China-nexus group's vCenter zero-day campaign, Russian espionage against Romanian government email and US organizations, and North Korean financial theft. Government breaches in Austria, West Virginia and at the FBI remain unattributed, and Equinor's IT incident is the most notable at an allied energy operator. Exploited flaws in vCenter, Cisco Expressway, Entra Connect Health, Puppet and REDCap keep patching pressure high."
+    "summary": "AI-assisted intrusion remains the week's main theme: the FBI, Google, Unit 42 and Amazon describe autonomous attack frameworks in real operations, and Bell Canada and the European Commission say AI-driven attackers breached them. Energy operators feature prominently, with Norway reportedly linking Equinor and Skagerak Energi incidents to an exploited Azure API Management flaw and KEPCO disclosing a large data breach. State-linked activity includes a China-nexus vCenter zero-day campaign, Russian espionage against Romanian and US targets, and North Korean financial theft. Government breaches in Austria, West Virginia and at the FBI remain unattributed."
   }
 }
