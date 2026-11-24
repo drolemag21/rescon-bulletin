@@ -1,7 +1,7 @@
 ---
 title: "South Korean power utility KEPCO says a breach exposed data on 1.5 million people"
 date: 2026-11-24T02:42:00Z
-lastmod: 2026-11-24T02:42:00Z
+lastmod: 2026-11-24T14:41:00Z
 label: reported
 label_history:
   - { at: 2026-11-24T02:42:00Z, label: reported }
@@ -9,6 +9,7 @@ sectors: [energy]
 countries: [kr]
 sources:
   - { name: "BleepingComputer", url: "https://www.bleepingcomputer.com/news/security/south-koreas-power-giant-kepco-confirms-data-breach-impacting-15-million/", tier: "3" }
+  - { name: "SecurityWeek", url: "https://www.securityweek.com/1-5-million-impacted-by-data-breach-at-south-korean-electric-company-kepco/", tier: "3" }
 submitted_by: rescon
 significant: false
 correction: null
@@ -21,4 +22,4 @@ Who
 : Unknown. An actor using the alias Noiem advertised KEPCO data on a forum; that claim is not verified.
 
 Status
-: KEPCO blocked the access, suspended affected services and is notifying people. It cited AI-assisted techniques but gave no details.
+: KEPCO has notified affected people. South Korea's privacy regulator PIPC is investigating. The intrusion method is undisclosed.
