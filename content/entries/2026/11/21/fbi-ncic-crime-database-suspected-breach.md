@@ -1,7 +1,7 @@
 ---
 title: "FBI reportedly investigating a breach of its national crime database"
 date: 2026-11-21T17:19:00Z
-lastmod: 2026-11-24T02:42:00Z
+lastmod: 2026-11-25T02:44:00Z
 label: reported
 label_history:
   - { at: 2026-11-21T17:19:00Z, label: reported }
@@ -12,6 +12,7 @@ sources:
   - { name: "CNN", url: "https://www.cnn.com/2026/11/20/politics/fbi-hacked-again-target-crime-database", tier: "3" }
   - { name: "BleepingComputer", url: "https://www.bleepingcomputer.com/news/security/fbi-reportedly-hacked-again-this-time-targeting-nationwide-police-database/", tier: "3" }
   - { name: "The Record", url: "https://therecord.media/fbi-cyberattack-data-breach", tier: "3" }
+  - { name: "CyberScoop", url: "https://cyberscoop.com/kash-patel-fbi-ncic-database-hack/", tier: "3" }
 submitted_by: rescon
 significant: false
 correction: null
@@ -24,4 +25,4 @@ Who
 : Unknown. No link to the earlier ShinyHunters breach has been reported.
 
 Status
-: The FBI has not commented. Sources told CNN and AP the attack happened on November 19, and President Trump said he had been briefed. Whether data was taken or altered is unclear.
+: On November 24 FBI Director Kash Patel said an investigation is active, working with other agencies. He would not say who was behind it or what was taken. Sources told CNN and AP the attack happened on November 19.
