@@ -17,3 +17,5 @@ tw:   { name: Taiwan,         flag: "🇹🇼" }
 nato: { name: NATO,           flag: "🛡️" }
 ie:   { name: Ireland,        flag: "🇮🇪" }
 at:   { name: Austria,        flag: "🇦🇹" }
+it:   { name: Italy,          flag: "🇮🇹" }
+ch:   { name: Switzerland,    flag: "🇨🇭" }
