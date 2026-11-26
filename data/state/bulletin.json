@@ -1,7 +1,7 @@
 {
-  "last_update": "2026-11-26T02:43:00Z",
+  "last_update": "2026-11-26T14:42:00Z",
   "daily": {
-    "summary": "AI-assisted intrusion and newly exploited flaws lead the last 24 hours. Microsoft says Chinese and North Korean state groups, including Salt Typhoon, have adopted the ARTEX framework. Italy and Switzerland warn of AI-agent campaigns, and the Swiss NCSC reports compromised critical infrastructure operators. CISA added ten exploited flaws to KEV, including Danfoss supermarket refrigeration controllers, and attackers are probing GeoServer. Earlier in the window, FinCEN, a CIA/ODNI analysis system and Guadeloupe's university hospital reported incidents."
+    "summary": "AI-assisted intrusion and exploited flaws lead the last 24 hours. Microsoft says Chinese and North Korean state groups, including Salt Typhoon, have adopted the ARTEX framework, and Italy and Switzerland warn of AI-agent campaigns against critical infrastructure. CISA added ten exploited flaws to KEV, including Danfoss refrigeration controllers; Accenture reports the Mitel MiCollab flaws were used as zero-days, and Juniper confirms exploitation of its Session Smart flaw. Drupal says a gap in last week's installer fix is also being exploited, and attackers are probing GeoServer."
   },
   "weekly": {
     "summary": "AI-assisted intrusion remains the week's main theme. The FBI, UK NCSC, Italian and Swiss agencies, Microsoft, Google and Unit 42 describe agentic attack frameworks in real operations, and Microsoft now ties ARTEX to Chinese and North Korean state groups. Energy operators feature prominently, with incidents at Equinor, Skagerak Energi, KEPCO and a US uranium mine. State-linked activity includes China-nexus campaigns against vCenter and PAN-OS firewalls and Russian espionage against Romanian and US targets. Breaches at US federal and state systems, including the FBI's NCIC, FinCEN, a CIA/ODNI system and Colorado, remain unattributed."
