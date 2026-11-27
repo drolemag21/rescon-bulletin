@@ -1,13 +1,14 @@
 ---
 title: "Treasury's FinCEN takes systems offline after unauthorized access"
 date: 2026-11-25T14:41:00Z
-lastmod: 2026-11-25T14:41:00Z
+lastmod: 2026-11-27T00:54:00Z
 label: reported
 label_history:
   - { at: 2026-11-25T14:41:00Z, label: reported }
 sectors: [finance, gov]
 countries: [us]
 sources:
+  - { name: "FinCEN Order FIN-2026-R002 (24 Nov)", url: "https://www.fincen.gov/sites/default/files/100/ORDER-FIN-2026-R002.pdf", tier: "1" }
   - { name: "The Record", url: "https://therecord.media/treasury-fincen-takes-systems-offline-after-cyber-incident", tier: "3" }
   - { name: "SecurityWeek", url: "https://www.securityweek.com/us-treasurys-fincen-disconnects-systems-following-cyber-incident/", tier: "3" }
 submitted_by: rescon
