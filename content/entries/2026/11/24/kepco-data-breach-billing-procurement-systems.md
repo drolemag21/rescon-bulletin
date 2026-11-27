@@ -15,7 +15,7 @@ sources:
 submitted_by: rescon
 significant: true
 correction: null
-discord_thread_id: null
+discord_thread_id: "1575676592544419901"
 ---
 What
 : South Korea's state power utility KEPCO says attackers reached its KEPCO ON billing platform and its procurement system. It confirmed the access on November 20. Data on over 1.5 million customers, employees and contractors was exposed.
