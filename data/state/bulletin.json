@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-11-27T14:42:00Z",
+  "last_update": "2026-11-28T02:41:00Z",
   "daily": {
-    "summary": "Four new items, none from official advisories; CISA and allied agencies have published nothing new since 25 November. The UK Department for Work and Pensions took online services offline after a cyber incident, and SAP confirmed an intrusion into its GitHub development environment. Japan's education ministry disclosed a procurement-system breach, and a press report says US authorities are examining whether Iran is behind cyberattacks on up to 50 tankers. Earlier in the window, primary sources confirmed the Azure API Management, KEPCO and PAN-OS items."
+    "summary": "A quiet holiday period. Reuters reports that the US Air Force's Cloud One platform, which hosts Defense Department applications, was breached through an unidentified software flaw; the attackers are not identified. CISA confirmed active exploitation of two GeoServer flaws and a follow-up Drupal core flaw. Earlier in the window, the UK DWP took services offline after a cyber incident, SAP confirmed a development-environment intrusion, Japan's education ministry disclosed a breach, and a press report linked Iran to attacks on tankers."
   },
   "weekly": {
-    "summary": "AI-assisted intrusion remains the week's main theme. The FBI, UK NCSC, Italian and Swiss agencies, Microsoft, Google and Unit 42 describe agentic attack frameworks in real operations, and Microsoft ties ARTEX to Chinese and North Korean state groups. Energy operators feature prominently, with Equinor, Skagerak Energi and KEPCO incidents confirmed by primary sources, and maritime energy transport is under scrutiny after a report on attacks against up to 50 tankers. Government systems in the US, UK and Japan reported breaches or disruptions, and SAP's development environment was compromised. None of these is publicly attributed."
+    "summary": "AI-assisted intrusion remains the week's main theme. The FBI, UK NCSC, Italian and Swiss agencies, Microsoft, Google and Unit 42 describe agentic attack frameworks in real operations, and Microsoft ties ARTEX to Chinese and North Korean state groups. Energy operators feature prominently, with Equinor, Skagerak Energi and KEPCO incidents confirmed by primary sources, and attacks on up to 50 tankers are under US scrutiny. A run of US federal breaches now reportedly includes the Air Force's Cloud One platform alongside the FBI, CIA/ODNI and FinCEN; none is publicly attributed or linked to the others."
   }
 }
