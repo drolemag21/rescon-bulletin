@@ -1,7 +1,7 @@
 {
-  "last_update": "2026-11-28T02:41:00Z",
+  "last_update": "2026-11-28T14:41:00Z",
   "daily": {
-    "summary": "A quiet holiday period. Reuters reports that the US Air Force's Cloud One platform, which hosts Defense Department applications, was breached through an unidentified software flaw; the attackers are not identified. CISA confirmed active exploitation of two GeoServer flaws and a follow-up Drupal core flaw. Earlier in the window, the UK DWP took services offline after a cyber incident, SAP confirmed a development-environment intrusion, Japan's education ministry disclosed a breach, and a press report linked Iran to attacks on tankers."
+    "summary": "A quiet holiday weekend, with no new items since the last update. The main development in the window remains Reuters' report that the US Air Force's Cloud One platform was breached through an unidentified software flaw; the Air Force has not publicly commented and the attackers are not identified. CISA's confirmation of exploited GeoServer and Drupal core flaws also falls in this window."
   },
   "weekly": {
     "summary": "AI-assisted intrusion remains the week's main theme. The FBI, UK NCSC, Italian and Swiss agencies, Microsoft, Google and Unit 42 describe agentic attack frameworks in real operations, and Microsoft ties ARTEX to Chinese and North Korean state groups. Energy operators feature prominently, with Equinor, Skagerak Energi and KEPCO incidents confirmed by primary sources, and attacks on up to 50 tankers are under US scrutiny. A run of US federal breaches now reportedly includes the Air Force's Cloud One platform alongside the FBI, CIA/ODNI and FinCEN; none is publicly attributed or linked to the others."
